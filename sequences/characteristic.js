@@ -1,4 +1,3 @@
-//const SnipetFile = require('../classes/snippet');
 const Sequence = require('../classes/sequence');
 const {login,
        logout,
@@ -31,8 +30,6 @@ const {login,
 
 const common = require('./common');
 
-//const characteristic = new SnipetFile('characteristic');
-
 const BLANK = {
     type: '[string]'
 };
@@ -50,18 +47,7 @@ let newCharacteristicSeq = (args) => new Sequence()
     .then(scrollDirection.up())
     .then(button.save())
     .then(checkTitle.withText('Информация о характеристике'));
-/*
-characteristic.domain('.source.feature')
-    .comment('создаем характеристику')
-    .add({
-        name: `new-characteristic`,
-        prefix: `new-characteristic`,
-        description: `Новая характеристика`,
-        body: newCharacteristicSeq(BLANK).content()
-    })
 
-    .finalize();
-*/
 module.exports = {
     newCharacteristicSeq: newCharacteristicSeq,
     BLANK: BLANK

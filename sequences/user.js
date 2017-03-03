@@ -1,4 +1,3 @@
-//const SnipetFile = require('../classes/snippet');
 const Sequence = require('../classes/sequence');
 const {login,
        logout,
@@ -28,8 +27,6 @@ const {login,
        scrollDirection,
        scrollBlock,
        clickTableTd} = require('../steps/wrappers');
-
-//const user = new SnipetFile('user');
 
 let newUserSeq = new Sequence()
     .then(button.create())
@@ -118,43 +115,6 @@ let newUserUpdateNewSeq = new Sequence()
     .then(logout)
     .comment('логин под модифаером')
     .then(login.asUser('modifier'));
-
-/*
-user.domain('.source.feature')
-    .comment('новый пользователь')
-    .add({
-        name: `new-user`,
-        prefix: `new-user`,
-        description: `Новый пользователь`,
-        body: newUserSeq.content()
-    })
-
-    .comment('новый пользователь (саморегистрация)')
-    .add({
-        name: `new-user-selfregister`,
-        prefix: `new-user-selfregister`,
-        description: `Новый пользователь(саморегистрация)`,
-        body: newSelfRegUserSeq.content()
-    })
-
-    .comment('новая заявка на изменение пользователя(существующий пользователь)')
-    .add({
-        name: `new-user-update-current`,
-        prefix: `new-user-update-current`,
-        description: `Новая заявка на изменение пользователя(существующий пользователь)`,
-        body: newUserUpdateSeq.content()
-    })
-
-    .comment('новая заявка на изменение пользователя(новый пользователь)')
-    .add({
-        name: `new-user-update-new`,
-        prefix: `new-user-update-new`,
-        description: `Новая заявка на изменение пользователя(новый пользователь)`,
-        body: newUserUpdateNewSeq.content()
-    })
-
-    .finalize();
-*/
 
 module.exports = {
     newUserSeq: newUserSeq,

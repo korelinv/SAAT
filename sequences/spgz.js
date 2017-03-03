@@ -1,4 +1,3 @@
-//const SnipetFile = require('../classes/snippet');
 const Sequence = require('../classes/sequence');
 const {login,
        logout,
@@ -31,8 +30,6 @@ const {login,
 
 const common = require('./common');
 const kpgzSeq = require('./kpgz');
-
-//const spgz = new SnipetFile('spgz');
 
 const BLANK = {
     standalone: false,
@@ -83,30 +80,6 @@ let newSpgzSeq = (args) => new Sequence()
 let newSpgzWithKpgz = (args) => new Sequence()
     .append(kpgzSeq.newKpgzSeq(args.kpgz))
     .append(newSpgzSeq(args.spgz));
-
-/*
-spgz.domain('.source.feature')
-    .comment('новый СПГЗ')
-    .add({
-        name: `new-spgz`,
-        prefix: `new-spgz`,
-        description: `Новый СПГЗ`,
-        body: newSpgzSeq(BLANK_STANDALONE).content()
-    })
-
-    .comment('новый СПГЗ (с КПГЗ)')
-    .add({
-        name: `new-spgz-w-kpgz`,
-        prefix: `new-spgz-w-kpgz`,
-        description: `Новый СПГЗ(с КПГЗ)`,
-        body: newSpgzWithKpgz({
-            kpgz: kpgzSeq.BLANK,
-            spgz: BLANK
-        }).content()
-    })
-
-    .finalize();
-*/
 
 module.exports = {
     newSpgzSeq: newSpgzSeq,

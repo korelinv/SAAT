@@ -1,4 +1,3 @@
-//const SnipetFile = require('../classes/snippet');
 const Sequence = require('../classes/sequence');
 const {login,
        logout,
@@ -31,8 +30,6 @@ const {login,
 
 const common = require('./common');
 const characteristic = require('./characteristic');
-
-//const kpgz = new SnipetFile('kpgz');
 
 const BLANK = {
     name: '[string]',
@@ -79,27 +76,6 @@ let addCharacteristicSeq = (args) => new Sequence()
                 .and(autocomplete.field().withName('Вид характеристики')))
     .then(button.withName('Сохранение Создание характеристик').inBlock('Характеристики'))
     .then(checkCountElementsTable.withName('Характеристики').count(1))
-
-/*
-kpgz.domain('.source.feature')
-    .comment('новый КПГЗ')
-    .add({
-        name: `new-kpgz`,
-        prefix: `new-kpgz`,
-        description: `Новый КПГЗ`,
-        body: newKpgzSeq(BLANK).content()
-    })
-
-    .comment('добавить характеристику к КПГЗ')
-    .add({
-        name: `kpgz-add-characteristic`,
-        prefix: `kpgz-add-characteristic`,
-        description: `Добавить характеристику к КПГЗ`,
-        body: addCharacteristicSeq(CHARACTERISTIC_BLANK).content()
-    })
-
-    .finalize();
-*/
 
 module.exports = {
     newKpgzSeq: newKpgzSeq,

@@ -1,4 +1,3 @@
-//const SnipetFile = require('../classes/snippet');
 const Sequence = require('../classes/sequence');
 const {login,
        logout,
@@ -29,8 +28,6 @@ const {login,
        scrollBlock,
        clickTableTd} = require('../steps/wrappers');
 
-//const common = new SnipetFile('common');
-
 const GOTO_SECTION_BLANK = {
     name: '[string]',
     main: '[string]',
@@ -43,19 +40,6 @@ let gotoSection = (arg) => new Sequence()
     .then(section.withName(arg.name))
     .then((!!arg.secondary) ? menu.main(arg.main).secondary(arg.secondary) : menu.main(arg.main))
     .then(checkTitle.withText(arg.title));
-
-/*
-common.domain('.source.feature')
-    .comment('переход к разделу')
-    .add({
-        name: 'goto-section',
-        prefix: 'goto-section',
-        description: 'Переход к разделу',
-        body: gotoSection(GOTO_SECTION_BLANK).content()
-    })
-
-    .finalize();
-*/
 
 module.exports = {
     gotoSection: gotoSection,
