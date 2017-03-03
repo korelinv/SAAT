@@ -1,0 +1,13 @@
+'.source.feature':
+
+		#переход к разделу
+
+		'goto-section':
+				'prefix': 'goto-section'
+				'description': 'Переход к разделу'
+				'body':"""
+						#переход к разделу "[string]", "[string]", "[string]"
+						Then Я открываю раздел системы "[string]"
+						Then Я выбираю в меню "[string]", "[string]"
+						Then Я ожидаю, что заголовок содержит "[string]"
+				"""
