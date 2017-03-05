@@ -9,7 +9,7 @@ module.exports = function(callback) {
         name: `new-kpgz`,
         prefix: `new-kpgz`,
         description: `Новый КПГЗ`,
-        body: sequences.newKpgzSeq(sequences.BLANK).content()
+        body: sequences.new_blank.content()
     })
 
     .comment('добавить характеристику к КПГЗ')
@@ -17,7 +17,7 @@ module.exports = function(callback) {
         name: `kpgz-add-characteristic`,
         prefix: `kpgz-add-characteristic`,
         description: `Добавить характеристику к КПГЗ`,
-        body: sequences.addCharacteristicSeq(sequences.CHARACTERISTIC_BLANK).content()
+        body: sequences.add_characteristic_blank.content()
     })
 
     .finalize(callback);

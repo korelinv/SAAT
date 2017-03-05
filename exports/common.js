@@ -9,7 +9,7 @@ module.exports = function(callback) {
         name: 'goto-section',
         prefix: 'goto-section',
         description: 'Переход к разделу',
-        body: sequences.gotoSection(sequences.GOTO_SECTION_BLANK).content()
+        body: sequences.goto_blank.content()
     })
 
     .finalize(callback);

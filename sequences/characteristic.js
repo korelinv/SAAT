@@ -30,25 +30,31 @@ const {login,
 
 const common = require('./common');
 
-const BLANK = {
-    type: '[string]'
+
+function newCharacteristic(args) {
+    return new Sequence()
+        .Sequence(common.gotoCharacteristics)
+        .Comment('создаем характеристику')
+        .Then(button.create())
+        .Then(input.field().withName('Наименование характеристики').withTag('ТЕСТОВАЯ ХАРАКТЕРИСТИКА'))
+
+        .If(true === !!args.type)
+            .And(autocomplete.field().withName('Признак').withText(args.type))
+        .End()
+
+        .If(false === !!args.type)
+            .And(autocomplete.field().withName('Признак'))
+        .End()
+
+        .Then(scrollDirection.up())
+        .Then(button.save())
+        .Then(checkTitle.withText('Информация о характеристике'));
 };
 
-let newCharacteristicSeq = (args) => new Sequence()
-    .append(common.gotoCharacteristics)
-    .comment('создаем характеристику')
-    .then(button.create())
-    .then(input.field().withName('Наименование характеристики').withTag('ТЕСТОВАЯ ХАРАКТЕРИСТИКА'))
-    .ifelse(!!args.type,
-            (seq) => seq
-                .and(autocomplete.field().withName('Признак').withText(args.type)),
-            (seq) => seq
-                .and(autocomplete.field().withName('Признак')))
-    .then(scrollDirection.up())
-    .then(button.save())
-    .then(checkTitle.withText('Информация о характеристике'));
-
 module.exports = {
-    newCharacteristicSeq: newCharacteristicSeq,
-    BLANK: BLANK
+    new: newCharacteristic,
+    
+    new_blank: newCharacteristic({
+        type: '[string]'
+    })
 };

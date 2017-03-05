@@ -28,38 +28,48 @@ const {login,
        scrollBlock,
        clickTableTd} = require('../steps/wrappers');
 
-const GOTO_SECTION_BLANK = {
-    name: '[string]',
-    main: '[string]',
-    secondary: '[string]',
-    title: '[string]',
+
+function gotoSection(arg){
+    return new Sequence()
+        .Comment(`переход к разделу "${arg.name}", "${arg.main}"${(!!arg.secondary) ? `, "${arg.secondary}"` : ''}`)
+        .Then(section.withName(arg.name))
+
+        .If(true === !!arg.secondary)
+        .End()
+            .Then(menu.main(arg.main).secondary(arg.secondary))
+        .If(false === !!arg.secondary)
+            .Then(menu.main(arg.main))
+        .End()
+
+        .Then(checkTitle.withText(arg.title));
 };
 
-let gotoSection = (arg) => new Sequence()
-    .comment(`переход к разделу "${arg.name}", "${arg.main}"${(!!arg.secondary) ? `, "${arg.secondary}"` : ''}`)
-    .then(section.withName(arg.name))
-    .then((!!arg.secondary) ? menu.main(arg.main).secondary(arg.secondary) : menu.main(arg.main))
-    .then(checkTitle.withText(arg.title));
 
 module.exports = {
-    gotoSection: gotoSection,
-    gotoKpgz: gotoSection({
+    goto: gotoSection,
+    
+    goto_blank: gotoSection({
+        name: '[string]',
+        main: '[string]',
+        secondary: '[string]',
+        title: '[string]'
+    }),
+    goto_kpgz: gotoSection({
         name: 'НСИ',
         main: 'Справочник КПГЗ / СПГЗ',
         secondary: 'КПГЗ',
         title: 'Список КПГЗ'
     }),
-    gotoSpgz: gotoSection({
+    goto_spgz: gotoSection({
         name: 'НСИ',
         main: 'Справочник КПГЗ / СПГЗ',
         secondary: 'CПГЗ',
         title: 'Список СПГЗ'
     }),
-    gotoCharacteristics: gotoSection({
+    goto_characteristics: gotoSection({
         name: 'НСИ',
         main: 'Справочник КПГЗ / СПГЗ',
         secondary: 'Характеристики',
         title: 'Список характеристик'
-    }),
-    GOTO_SECTION_BLANK: GOTO_SECTION_BLANK
+    })
 };

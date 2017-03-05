@@ -9,7 +9,7 @@ module.exports = function(callback) {
         name: `new-characteristic`,
         prefix: `new-characteristic`,
         description: `Новая характеристика`,
-        body: sequences.newCharacteristicSeq(sequences.BLANK).content()
+        body: sequences.new_blank.content()
     })
 
     .finalize(callback);

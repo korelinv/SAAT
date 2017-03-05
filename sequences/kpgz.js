@@ -31,55 +31,69 @@ const {login,
 const common = require('./common');
 const characteristic = require('./characteristic');
 
-const BLANK = {
-    name: '[string]',
-    parent: '[string]',
-    okpd: '[string]',
-    okpd2: '[string]'
+
+function newKpgzSeq(args) {
+    return new Sequence()
+        .Sequence(common.gotoKpgz)
+        .Comment('создаем КПГЗ')
+        .Then(button.create())
+
+        .And(input.field().withName('Наименование КПГЗ').withTag((!!args.name) ? args.name : 'ТЕСТОВЫЙ КПГЗ'))
+
+        .If(true === !!args.parent)
+            .And(autocomplete.field().withName('Вышестоящий КПГЗ').withGenereatedtag(args.parent))
+            .And(autocomplete.field().withName('Код ОКПД').withText(args.okpd))
+            .And(autocomplete.field().withName('Код ОКПД-2').withText(args.okpd2))
+        .End()
+
+        .If(false === !!args.parent)
+            .And(autocomplete.field().withName('Вышестоящий КПГЗ'))
+            .And(autocomplete.field().withName('Код ОКПД'))
+            .And(autocomplete.field().withName('Код ОКПД-2'))
+        .End()
+
+        .Comment('And Я сохраняю новый КПГЗ')
+        .Then(checkTitle.withText('Информация о КПГЗ'));
 };
-const CHARACTERISTIC_BLANK = {
-    name: '[string]',
-    type: '[string]'
+
+function addCharacteristicSeq(args) {
+    return new Sequence()
+        .Then(scrollBlock.withName('Характеристики'))
+        .Then(button.create().inBlock('Характеристики'))
+
+        .If(true === !!args.name)
+            .Then(autocomplete.field().withName('Характеристика').withGenereatedtag(args.name))
+        .End()
+
+        .If(false === !!args.name)
+            .Then(autocomplete.field().withName('Характеристика'))
+        .End()
+
+        .If(true === !!args.type)
+            .And(autocomplete.field().withName('Вид характеристики').withText(args.type))
+        .End()
+
+        .If(false === !!args.type)
+            .And(autocomplete.field().withName('Вид характеристики'))
+        .End()
+
+        .Then(button.withName('Сохранение Создание характеристик').inBlock('Характеристики'))
+        .Then(checkCountElementsTable.withName('Характеристики').count(1));
 };
 
-let newKpgzSeq = (args) => new Sequence()
-    .append(common.gotoKpgz)
-    .comment('создаем КПГЗ')
-    .then(button.create())
-    .and(input.field().withName('Наименование КПГЗ').withTag((!!args.name) ? args.name : 'ТЕСТОВЫЙ КПГЗ'))
-
-    .ifelse(!!args.parent,
-            (seq) => seq
-                .and(autocomplete.field().withName('Вышестоящий КПГЗ').withGenereatedtag(args.parent))
-                .and(autocomplete.field().withName('Код ОКПД').withText(args.okpd))
-                .and(autocomplete.field().withName('Код ОКПД-2').withText(args.okpd2)),
-            (seq) => seq
-                .and(autocomplete.field().withName('Вышестоящий КПГЗ'))
-                .and(autocomplete.field().withName('Код ОКПД'))
-                .and(autocomplete.field().withName('Код ОКПД-2')))
-
-    .comment('And Я сохраняю новый КПГЗ')
-    .then(checkTitle.withText('Информация о КПГЗ'));
-
-let addCharacteristicSeq = (args) => new Sequence()
-    .then(scrollBlock.withName('Характеристики'))
-    .then(button.create().inBlock('Характеристики'))
-    .ifelse(!!args.name,
-            (seq) => seq
-                .then(autocomplete.field().withName('Характеристика').withGenereatedtag(args.name)),
-            (seq) => seq
-                .then(autocomplete.field().withName('Характеристика')))
-    .ifelse(!!args.type,
-            (seq) => seq
-                .and(autocomplete.field().withName('Вид характеристики').withText(args.type)),
-            (seq) => seq
-                .and(autocomplete.field().withName('Вид характеристики')))
-    .then(button.withName('Сохранение Создание характеристик').inBlock('Характеристики'))
-    .then(checkCountElementsTable.withName('Характеристики').count(1))
 
 module.exports = {
-    newKpgzSeq: newKpgzSeq,
-    addCharacteristicSeq: addCharacteristicSeq,
-    BLANK: BLANK,
-    CHARACTERISTIC_BLANK: CHARACTERISTIC_BLANK
+    new: newKpgzSeq,
+    add_characteristic: addCharacteristicSeq,
+
+    new_blank: newKpgzSeq({
+        name: '[string]',
+        parent: '[string]',
+        okpd: '[string]',
+        okpd2: '[string]'
+    }),
+    add_characteristic_blank: addCharacteristicSeq({
+        name: '[string]',
+        type: '[string]'
+    })
 };

@@ -1,51 +1,50 @@
 class Sequence {
 
-    constructor() {
+    constructor(condition, parent) {
         this.seq = [];
+        this.parent = parent;
+        this.condition = condition;
     };
 
-    step(prefix, defenition) {
+    Step(prefix, defenition) {
         this.seq.push(`${prefix} ${(!!defenition.render) ? defenition.render() : defenition}`);
 
         return this;
     };
 
-    given(defenition) {
-        return this.step('Given', defenition);
+    Given(defenition) {
+        return this.Step('Given', defenition);
     };
 
-    when(defenition) {
-        return this.step('When', defenition);
+    When(defenition) {
+        return this.Step('When', defenition);
     };
 
-    then(defenition) {
-        return this.step('Then', defenition);
+    Then(defenition) {
+        return this.Step('Then', defenition);
     };
 
-    and(defenition) {
-        return this.step(' And', defenition);
+    And(defenition) {
+        return this.Step(' And', defenition);
     };
 
-    ifelse(condition, trueSequence, falseSequence) {
-
-        if (condition) {
-            trueSequence(this);
-        } else if (!!falseSequence) {
-            falseSequence(this);
-        }
-
-        return this;
+    If(condition) {
+        return new Sequence(condition, this);
     };
 
-    comment(text) {
+    End() {
+        return (this.condition) ? this.parent.Sequence(this) : this.parent;
+    };
+
+    Comment(text) {
         this.seq.push(`#${text}`);
 
         return this;
     };
 
-    append(seq) {
-        if (seq instanceof Sequence) {
-            this.seq = this.seq.concat(seq.content());
+    Sequence(sequence) {
+        if (sequence instanceof Sequence) {
+            this.seq = this.seq.concat(sequence.content());
         }
 
         return this;
