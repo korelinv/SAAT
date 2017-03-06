@@ -1,4 +1,32 @@
-#Step assembly
+#Expression assembler
+
+Expression class usesd to assemble regex and specific step defenitions.
+
+```javascript
+// this code will print 'text' in console
+const prime = new Expression();
+const str = (text) => prime.str(text);
+
+let expression = str('text').render();
+
+console.log(expression);
+```
+
+To obtain string output of expression you must render it first:
+```javascript
+    //a will be equal to 'Hello World'
+    let a = new Expression().str('Hello ').str('World').render();
+```
+
+Each action on expression creates clone ant then modifies it.
+For example:
+```javascript
+let one =  new Expression().str('one');
+let two = one.dig();
+
+console.log(one.render()); // one
+console.log(two.render()); // one\d
+```
 
 #Wrapper classes
 
