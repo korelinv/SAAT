@@ -18,7 +18,7 @@ To obtain string output of expression you must render it first:
     let a = new Expression().str('Hello ').str('World').render();
 ```
 
-Each action on expression creates clone ant then modifies it.
+Each action on expression creates clone and then modifies it.
 For example:
 ```javascript
 let one =  new Expression().str('one');
