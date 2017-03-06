@@ -98,13 +98,13 @@ function wizard_v2(args) {
 function add_contact_person(args) {
     return new Sequence()
         .Comment('Добавление контактного лица')
-        .Then('Я заполняю блок Контактные лица "ЛАЛАЛАЛА", "ЛАЛАЛАЛА", "1234567890", "Бухгалтерия", "test@test.ru"');
+        .Then(`Я заполняю блок Контактные лица "${args.patronymic}", "${args.name}", "${args.phone}", "${args.phoneType}", "${args.email}"`);
 };
 
 function add_contact_info(args) {
     return new Sequence()
         .Comment('Добавление контактной информации')
-        .Then('Я заполняю блок Контактная информация (Страна регистрации) "asdfasdfasdf", "Владивостокское время", "123123123", "test@test.ru", "asdf", "asdf", "asdf"');
+        .Then(`Я заполняю блок Контактная информация (Страна регистрации) "${args.address}", "${args.time}", "${args.phone}", "${args.email}", "${args.surname}", "${args.name}", "${args.patronymic}"`);
 };
 
 function add_checking_account(args) {
@@ -112,8 +112,16 @@ function add_checking_account(args) {
         .Comment('Добавление расчетного счета')
         .Then(scrollBlock.withName('Расчетные счета'))
         .And(button.withCaption('Добавляет расчетный счет'))
-        .And(input.field().withName('Номер расчетного счета').withText('123456789'))
-        .And(autocomplete.field().withName('БИК'))
+        .And(input.field().withName('Номер расчетного счета').withText(args.account))
+
+        .If(true === !!args.bik)
+            .And(autocomplete.field().withName('БИК').withText(args.bik))
+        .End()
+
+        .If(false === !!args.bik)
+            .And(autocomplete.field().withName('БИК'))
+        .End()
+
         .And(checkbox.withName('Признак использования в контрактной системе'))
         .Then(button.withName('Сохранение Создание банковского реквизита'));
 };
@@ -123,8 +131,16 @@ function add_personal_account(args) {
         .Comment('Добавление лицевого счета')
         .Then(scrollBlock.withName('Лицевые счета'))
         .And(button.withCaption('Добавляет лицевой счет'))
-        .And(input.field().withName('Номер лицевого счета').withText('123456789'))
-        .And(autocomplete.field().withName('Номер расчетного счета'))
+        .And(input.field().withName('Номер лицевого счета').withText(args.account))
+
+        .If(true === !!args.cheking)
+            .And(autocomplete.field().withName('Номер расчетного счета').withText(args.cheking))
+        .End()
+
+        .If(false === !!args.cheking)
+            .And(autocomplete.field().withName('Номер расчетного счета'))
+        .End()
+
         .And(checkbox.withName('Признак использования в контрактной системе'))
         .Then(button.withName('Сохранение Создание банковского реквизита'));
 };
@@ -134,8 +150,16 @@ function add_trust_managment_account(args) {
         .Comment('Добавление счета доверительного управления')
         .Then(scrollBlock.withName('Счета доверительного управления'))
         .And(button.withCaption('Добавляет счет доверительного управления'))
-        .And(input.field().withName('Номер счета доверительного управления').withText('123456789'))
-        .And(autocomplete.field().withName('БИК'))
+        .And(input.field().withName('Номер счета доверительного управления').withText(args.account))
+
+        .If(true === !!args.bik)
+            .And(autocomplete.field().withName('БИК').withText(args.bik))
+        .End()
+
+        .If(false === !!args.bik)
+            .And(autocomplete.field().withName('БИК'))
+        .End()
+
         .And(checkbox.withName('Признак использования в контрактной системе'))
         .Then(button.withName('Сохранение Создание банковского реквизита'));
 };
@@ -145,12 +169,93 @@ function add_organization_contract(args) {
         .Comment('Добавление контракта со специализированной организацией')
         .Then(scrollBlock.withName('Контракты со специализированной организацией'))
         .And(button.withCaption('Создание Контракты со специализированной организацией'))
-        .And(input.field().withName('Номер контракта').withText('123456789'))
+        .And(input.field().withName('Номер контракта').withText(args.contract))
         .And(datapicker.withName('Дата контракта'))
-        .And(autocomplete.field().withName('Специализированная организация'))
+
+        .If(true === !!args.organization)
+            .And(autocomplete.field().withName('Специализированная организация').withText(args.organization))
+        .End()
+
+        .If(false === !!args.organization)
+            .And(autocomplete.field().withName('Специализированная организация'))
+        .End()
+
         .And(datapicker.withName('Дата начала действия контракта'))
         .And(datapicker.withName('Дата окончания действия контракта'))
         .Then(button.withName('Сохранение Создание контракта со специализированной организацией'));
+};
+
+function new_grbs(args) {
+    return new Sequence()
+        .Comment('Создание нового ГРБС')
+        .Sequence(common.goto_grbs)
+        .Then(button.create())
+        .Sequence(wizard(args.wizard))
+        .Then(checkTitle.withText('Создание ГРБС'))
+        .Then(datapicker.withName('Дата постановки на учет в налоговом органе'))
+        .And(autocomplete.withName('Организационно-правовая форма'))
+        .And(textarea.withName('Полное наименование').generated().withText(args.name))
+        .And(textarea.withName('Краткое наименование').generated().withText(args.name))
+        .And(input.field().withName('ОГРН').withText('1234567890123'))
+        .And(autocomplete.field().withName('Головная организация'))
+        .And(input.field().withName('Юридический адрес').withText('LALALALALA'))
+        .And(input.field().withName('ОКПО').withText('12345678'))
+        .And(autocomplete.field().withName('ОКАТО'))
+        .And(autocomplete.field().withName('ОКТМО'))
+        .And(autocomplete.field().withName('ОКОГУ'))
+        .And(autocomplete.field().withName('ОКВЭД'))
+        .And(input.field().withName('Место').withText('121170 город Москва, пл Победы, дом 3Д'))
+        .And(input.field().withName('Факс').withText('12312312313123123123'))
+        .Sequence(add_contact_person(args.contact_person))
+        .Sequence(add_checking_account(args.checking_account))
+        .Sequence(add_personal_account(args.personal_account))
+        .Then(scrollDirection.up())
+        .And(button.save())
+        .Then(checkTitle.withText('Информация об ГРБС'));
+};
+
+function new_customer(args) {
+    return new Sequence()
+        .Comment('Создание нового заказчика')
+        .Sequence(common.goto_customer)
+        .Then(button.create())
+        .Sequence(wizard(args.wizard))
+        .Then(checkTitle.withText('Создание заказчика'))
+
+        .Then(datapicker.withName('Дата постановки на учет в налоговом органе'))
+        .And(autocomplete.withName('Организационно-правовая форма'))
+        .And(textarea.withName('Полное наименование').generated().withText(args.name))
+        .And(textarea.withName('Краткое наименование').generated().withText(args.name))
+        .And(input.field().withName('ОГРН').withText('1234567890123'))
+        .And(autocomplete.field().withName('Головная организация'))
+        .And(input.field().withName('Юридический адрес').withText('LALALALALA'))
+
+        .And(input.field().withName('Код по СПЗ').withText('12345678901'))
+        .And(input.field().withName('УНК бюджетополучателя').withText('123456'))
+        .And(autocomplete.field().withName('ГРБС'))
+        .And(autocomplete.field().withName('Управляющий орган в КС'))
+        .And(input.field().withName('ФИО контрактного управляющего / руководителя контрактной службы').withText('ТЕСТОВОЕ ФИО'))
+        .And(input.field().withName('Телефон контрактного управляющего / руководителя контрактной службы').withText('1234567890112344'))
+        .And(input.field().withName('E-MAIL контрактного управляющего / руководителя контрактной службы').withText('test@test.ru'))
+
+        .And(input.field().withName('ОКПО').withText('12345678'))
+        .And(autocomplete.field().withName('ОКАТО'))
+        .And(autocomplete.field().withName('ОКТМО'))
+        .And(autocomplete.field().withName('ОКОГУ'))
+        .And(autocomplete.field().withName('ОКВЭД'))
+
+        .And(input.field().withName('Место нахождения').withText('121170 город Москва, пл Победы, дом 3Д'))
+        .And(input.field().withName('Факс').withText('12312312313123123123'))
+
+        .Sequence(add_contact_person(args.contact_person))
+        .Sequence(add_checking_account(args.checking_account))
+        .Sequence(add_personal_account(args.personal_account))
+        .Sequence(add_trust_managment_account(args.trust_managment_account))
+        .Sequence(add_organization_contract(args.organization_contract))
+
+        .Then(scrollDirection.up())
+        .Then(button.save())
+        .Then(checkTitle.withText('Информация о заказчике'))
 };
 
 
@@ -163,6 +268,9 @@ module.exports = {
     add_personal_account: add_personal_account,
     add_trust_managment_account: add_trust_managment_account,
     add_organization_contract: add_organization_contract,
+
+    new_grbs: new_grbs,
+    new_customer: new_customer,
 
     wizard_blank_fl: wizard({
         innFl: '[string]',
@@ -215,27 +323,96 @@ module.exports = {
 
 
     add_contact_person_blank: add_contact_person({
-
+        patronymic: '[string]',
+        name: '[string]',
+        phone: '[string]',
+        phoneType: '[string]',
+        email: '[string]'
     }),
 
     add_contact_info_blank: add_contact_info({
-
+        address: '[string]',
+        time: '[string]',
+        phone: '[string]',
+        email: '[string]',
+        surname: '[string]',
+        name: '[string]',
+        patronymic: '[string]'
     }),
 
     add_checking_account_blank: add_checking_account({
-
+        account: '[string]',
+        bik: '[string]'
     }),
 
     add_personal_account_blank: add_personal_account({
-
+        account: '[string]',
+        cheking: '[string]'
     }),
 
     add_trust_managment_account_blank: add_trust_managment_account({
-
+        account: '[string]',
+        bik: '[string]'
     }),
-    
-    add_organization_contract_blank: add_organization_contract({
 
+    add_organization_contract_blank: add_organization_contract({
+        contract: '[string]',
+        organization: '[string]'
+    }),
+
+
+    new_grbs_blank: new_grbs({
+        name: '[string]',
+        wizard: {
+            innUl: '[string]',
+            kpp: '[string]'
+        },
+        contact_person: {
+            patronymic: '[string]',
+            name: '[string]',
+            phone: '[string]',
+            phoneType: '[string]',
+            email: '[string]'
+        },
+        checking_account: {
+            account: '[string]',
+            bik: '[string]'
+        },
+        personal_account: {
+            account: '[string]',
+            cheking: '[string]'
+        }
+    }),
+
+    new_customer_blank: new_customer({
+        name: '[string]',
+        wizard: {
+            innUl: '[string]',
+            kpp: '[string]'
+        },
+        contact_person: {
+            patronymic: '[string]',
+            name: '[string]',
+            phone: '[string]',
+            phoneType: '[string]',
+            email: '[string]'
+        },
+        checking_account: {
+            account: '[string]',
+            bik: '[string]'
+        },
+        personal_account: {
+            account: '[string]',
+            cheking: '[string]'
+        },
+        trust_managment_account: {
+            account: '[string]',
+            bik: '[string]'
+        },
+        organization_contract: {
+            contract: '[string]',
+            organization: '[string]'
+        }
     })
 
 };

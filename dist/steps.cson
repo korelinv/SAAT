@@ -1,0 +1,561 @@
+'.source.feature':
+
+		'Given-login':
+				'prefix': 'Given-login'
+				'description': 'Given-login'
+				'body':'Given Я логинюсь под(?: (сгенерированным))? пользователем "([^"]*)"'
+
+		'When-login':
+				'prefix': 'When-login'
+				'description': 'When-login'
+				'body':'When Я логинюсь под(?: (сгенерированным))? пользователем "([^"]*)"'
+
+		'Then-login':
+				'prefix': 'Then-login'
+				'description': 'Then-login'
+				'body':'Then Я логинюсь под(?: (сгенерированным))? пользователем "([^"]*)"'
+
+		'And-login':
+				'prefix': 'And-login'
+				'description': 'And-login'
+				'body':'And Я логинюсь под(?: (сгенерированным))? пользователем "([^"]*)"'
+
+		'Given-logout':
+				'prefix': 'Given-logout'
+				'description': 'Given-logout'
+				'body':'Given Я разлогиниваюсь'
+
+		'When-logout':
+				'prefix': 'When-logout'
+				'description': 'When-logout'
+				'body':'When Я разлогиниваюсь'
+
+		'Then-logout':
+				'prefix': 'Then-logout'
+				'description': 'Then-logout'
+				'body':'Then Я разлогиниваюсь'
+
+		'And-logout':
+				'prefix': 'And-logout'
+				'description': 'And-logout'
+				'body':'And Я разлогиниваюсь'
+
+		'Given-selfRegistration':
+				'prefix': 'Given-selfRegistration'
+				'description': 'Given-selfRegistration'
+				'body':'Given Я перехожу к форме саморегистрации'
+
+		'When-selfRegistration':
+				'prefix': 'When-selfRegistration'
+				'description': 'When-selfRegistration'
+				'body':'When Я перехожу к форме саморегистрации'
+
+		'Then-selfRegistration':
+				'prefix': 'Then-selfRegistration'
+				'description': 'Then-selfRegistration'
+				'body':'Then Я перехожу к форме саморегистрации'
+
+		'And-selfRegistration':
+				'prefix': 'And-selfRegistration'
+				'description': 'And-selfRegistration'
+				'body':'And Я перехожу к форме саморегистрации'
+
+		'Given-checkTitleHtml':
+				'prefix': 'Given-checkTitleHtml'
+				'description': 'Given-checkTitleHtml'
+				'body':'Given Я ожидаю, что название раздела "([^"]*)"'
+
+		'When-checkTitleHtml':
+				'prefix': 'When-checkTitleHtml'
+				'description': 'When-checkTitleHtml'
+				'body':'When Я ожидаю, что название раздела "([^"]*)"'
+
+		'Then-checkTitleHtml':
+				'prefix': 'Then-checkTitleHtml'
+				'description': 'Then-checkTitleHtml'
+				'body':'Then Я ожидаю, что название раздела "([^"]*)"'
+
+		'And-checkTitleHtml':
+				'prefix': 'And-checkTitleHtml'
+				'description': 'And-checkTitleHtml'
+				'body':'And Я ожидаю, что название раздела "([^"]*)"'
+
+		'Given-checkTitle':
+				'prefix': 'Given-checkTitle'
+				'description': 'Given-checkTitle'
+				'body':'Given Я ожидаю, что заголовок содержит "([^"]*)"'
+
+		'When-checkTitle':
+				'prefix': 'When-checkTitle'
+				'description': 'When-checkTitle'
+				'body':'When Я ожидаю, что заголовок содержит "([^"]*)"'
+
+		'Then-checkTitle':
+				'prefix': 'Then-checkTitle'
+				'description': 'Then-checkTitle'
+				'body':'Then Я ожидаю, что заголовок содержит "([^"]*)"'
+
+		'And-checkTitle':
+				'prefix': 'And-checkTitle'
+				'description': 'And-checkTitle'
+				'body':'And Я ожидаю, что заголовок содержит "([^"]*)"'
+
+		'Given-checkCountElementsTable':
+				'prefix': 'Given-checkCountElementsTable'
+				'description': 'Given-checkCountElementsTable'
+				'body':'Given Я ожидаю, что в списке(?: "([^"]*)")? будет элементов = (\d*)'
+
+		'When-checkCountElementsTable':
+				'prefix': 'When-checkCountElementsTable'
+				'description': 'When-checkCountElementsTable'
+				'body':'When Я ожидаю, что в списке(?: "([^"]*)")? будет элементов = (\d*)'
+
+		'Then-checkCountElementsTable':
+				'prefix': 'Then-checkCountElementsTable'
+				'description': 'Then-checkCountElementsTable'
+				'body':'Then Я ожидаю, что в списке(?: "([^"]*)")? будет элементов = (\d*)'
+
+		'And-checkCountElementsTable':
+				'prefix': 'And-checkCountElementsTable'
+				'description': 'And-checkCountElementsTable'
+				'body':'And Я ожидаю, что в списке(?: "([^"]*)")? будет элементов = (\d*)'
+
+		'Given-waitUntilLoaded':
+				'prefix': 'Given-waitUntilLoaded'
+				'description': 'Given-waitUntilLoaded'
+				'body':'Given Я ожидаю окончания загрузки(?: "([^"]*)")?'
+
+		'When-waitUntilLoaded':
+				'prefix': 'When-waitUntilLoaded'
+				'description': 'When-waitUntilLoaded'
+				'body':'When Я ожидаю окончания загрузки(?: "([^"]*)")?'
+
+		'Then-waitUntilLoaded':
+				'prefix': 'Then-waitUntilLoaded'
+				'description': 'Then-waitUntilLoaded'
+				'body':'Then Я ожидаю окончания загрузки(?: "([^"]*)")?'
+
+		'And-waitUntilLoaded':
+				'prefix': 'And-waitUntilLoaded'
+				'description': 'And-waitUntilLoaded'
+				'body':'And Я ожидаю окончания загрузки(?: "([^"]*)")?'
+
+		'Given-checkRadioValue':
+				'prefix': 'Given-checkRadioValue'
+				'description': 'Given-checkRadioValue'
+				'body':'Given Я ожидаю что радиокнопка "([^"]*)" установлена в положении "([^"]*)"'
+
+		'When-checkRadioValue':
+				'prefix': 'When-checkRadioValue'
+				'description': 'When-checkRadioValue'
+				'body':'When Я ожидаю что радиокнопка "([^"]*)" установлена в положении "([^"]*)"'
+
+		'Then-checkRadioValue':
+				'prefix': 'Then-checkRadioValue'
+				'description': 'Then-checkRadioValue'
+				'body':'Then Я ожидаю что радиокнопка "([^"]*)" установлена в положении "([^"]*)"'
+
+		'And-checkRadioValue':
+				'prefix': 'And-checkRadioValue'
+				'description': 'And-checkRadioValue'
+				'body':'And Я ожидаю что радиокнопка "([^"]*)" установлена в положении "([^"]*)"'
+
+		'Given-input':
+				'prefix': 'Given-input'
+				'description': 'Given-input'
+				'body':'Given Я заполняю (фильтр|поле) "([^"]*)" (текстом|уникальным кодом|новым кодом ИНН\(ЮЛ\)|новым кодом ИНН\(ФЛ\)|сгенерированным тегом|новым кодом СНИЛС|уникальным email\'ом) "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'When-input':
+				'prefix': 'When-input'
+				'description': 'When-input'
+				'body':'When Я заполняю (фильтр|поле) "([^"]*)" (текстом|уникальным кодом|новым кодом ИНН\(ЮЛ\)|новым кодом ИНН\(ФЛ\)|сгенерированным тегом|новым кодом СНИЛС|уникальным email\'ом) "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Then-input':
+				'prefix': 'Then-input'
+				'description': 'Then-input'
+				'body':'Then Я заполняю (фильтр|поле) "([^"]*)" (текстом|уникальным кодом|новым кодом ИНН\(ЮЛ\)|новым кодом ИНН\(ФЛ\)|сгенерированным тегом|новым кодом СНИЛС|уникальным email\'ом) "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'And-input':
+				'prefix': 'And-input'
+				'description': 'And-input'
+				'body':'And Я заполняю (фильтр|поле) "([^"]*)" (текстом|уникальным кодом|новым кодом ИНН\(ЮЛ\)|новым кодом ИНН\(ФЛ\)|сгенерированным тегом|новым кодом СНИЛС|уникальным email\'ом) "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Given-section':
+				'prefix': 'Given-section'
+				'description': 'Given-section'
+				'body':'Given Я открываю раздел системы "([^"]*)"'
+
+		'When-section':
+				'prefix': 'When-section'
+				'description': 'When-section'
+				'body':'When Я открываю раздел системы "([^"]*)"'
+
+		'Then-section':
+				'prefix': 'Then-section'
+				'description': 'Then-section'
+				'body':'Then Я открываю раздел системы "([^"]*)"'
+
+		'And-section':
+				'prefix': 'And-section'
+				'description': 'And-section'
+				'body':'And Я открываю раздел системы "([^"]*)"'
+
+		'Given-home':
+				'prefix': 'Given-home'
+				'description': 'Given-home'
+				'body':'Given Я перехожу на главную страницу'
+
+		'When-home':
+				'prefix': 'When-home'
+				'description': 'When-home'
+				'body':'When Я перехожу на главную страницу'
+
+		'Then-home':
+				'prefix': 'Then-home'
+				'description': 'Then-home'
+				'body':'Then Я перехожу на главную страницу'
+
+		'And-home':
+				'prefix': 'And-home'
+				'description': 'And-home'
+				'body':'And Я перехожу на главную страницу'
+
+		'Given-menu':
+				'prefix': 'Given-menu'
+				'description': 'Given-menu'
+				'body':'Given Я выбираю в меню "([^"]*)"(?:, "([^"]*)")?'
+
+		'When-menu':
+				'prefix': 'When-menu'
+				'description': 'When-menu'
+				'body':'When Я выбираю в меню "([^"]*)"(?:, "([^"]*)")?'
+
+		'Then-menu':
+				'prefix': 'Then-menu'
+				'description': 'Then-menu'
+				'body':'Then Я выбираю в меню "([^"]*)"(?:, "([^"]*)")?'
+
+		'And-menu':
+				'prefix': 'And-menu'
+				'description': 'And-menu'
+				'body':'And Я выбираю в меню "([^"]*)"(?:, "([^"]*)")?'
+
+		'Given-button':
+				'prefix': 'Given-button'
+				'description': 'Given-button'
+				'body':'Given Я нажимаю на кнопку(?: (создания|редактирования|сохранения|удаления|просмотра|закрытия|выбора|подтверждения))?(?: c (текстом|заголовком|названием) "([^"]*)")?(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'When-button':
+				'prefix': 'When-button'
+				'description': 'When-button'
+				'body':'When Я нажимаю на кнопку(?: (создания|редактирования|сохранения|удаления|просмотра|закрытия|выбора|подтверждения))?(?: c (текстом|заголовком|названием) "([^"]*)")?(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Then-button':
+				'prefix': 'Then-button'
+				'description': 'Then-button'
+				'body':'Then Я нажимаю на кнопку(?: (создания|редактирования|сохранения|удаления|просмотра|закрытия|выбора|подтверждения))?(?: c (текстом|заголовком|названием) "([^"]*)")?(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'And-button':
+				'prefix': 'And-button'
+				'description': 'And-button'
+				'body':'And Я нажимаю на кнопку(?: (создания|редактирования|сохранения|удаления|просмотра|закрытия|выбора|подтверждения))?(?: c (текстом|заголовком|названием) "([^"]*)")?(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Given-modalTab':
+				'prefix': 'Given-modalTab'
+				'description': 'Given-modalTab'
+				'body':'Given Я переключаюсь на вкладку "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'When-modalTab':
+				'prefix': 'When-modalTab'
+				'description': 'When-modalTab'
+				'body':'When Я переключаюсь на вкладку "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Then-modalTab':
+				'prefix': 'Then-modalTab'
+				'description': 'Then-modalTab'
+				'body':'Then Я переключаюсь на вкладку "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'And-modalTab':
+				'prefix': 'And-modalTab'
+				'description': 'And-modalTab'
+				'body':'And Я переключаюсь на вкладку "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Given-link':
+				'prefix': 'Given-link'
+				'description': 'Given-link'
+				'body':'Given Я нажимаю на(?: (сгенерированную))? ссылку "([^"]*)"'
+
+		'When-link':
+				'prefix': 'When-link'
+				'description': 'When-link'
+				'body':'When Я нажимаю на(?: (сгенерированную))? ссылку "([^"]*)"'
+
+		'Then-link':
+				'prefix': 'Then-link'
+				'description': 'Then-link'
+				'body':'Then Я нажимаю на(?: (сгенерированную))? ссылку "([^"]*)"'
+
+		'And-link':
+				'prefix': 'And-link'
+				'description': 'And-link'
+				'body':'And Я нажимаю на(?: (сгенерированную))? ссылку "([^"]*)"'
+
+		'Given-wait':
+				'prefix': 'Given-wait'
+				'description': 'Given-wait'
+				'body':'Given Я жду (\d+) сек\.'
+
+		'When-wait':
+				'prefix': 'When-wait'
+				'description': 'When-wait'
+				'body':'When Я жду (\d+) сек\.'
+
+		'Then-wait':
+				'prefix': 'Then-wait'
+				'description': 'Then-wait'
+				'body':'Then Я жду (\d+) сек\.'
+
+		'And-wait':
+				'prefix': 'And-wait'
+				'description': 'And-wait'
+				'body':'And Я жду (\d+) сек\.'
+
+		'Given-multiselectFilter':
+				'prefix': 'Given-multiselectFilter'
+				'description': 'Given-multiselectFilter'
+				'body':'Given Я выбираю опцию "([^"]*)" фильтра "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'When-multiselectFilter':
+				'prefix': 'When-multiselectFilter'
+				'description': 'When-multiselectFilter'
+				'body':'When Я выбираю опцию "([^"]*)" фильтра "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Then-multiselectFilter':
+				'prefix': 'Then-multiselectFilter'
+				'description': 'Then-multiselectFilter'
+				'body':'Then Я выбираю опцию "([^"]*)" фильтра "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'And-multiselectFilter':
+				'prefix': 'And-multiselectFilter'
+				'description': 'And-multiselectFilter'
+				'body':'And Я выбираю опцию "([^"]*)" фильтра "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Given-textarea':
+				'prefix': 'Given-textarea'
+				'description': 'Given-textarea'
+				'body':'Given Я заполняю(?: (сгенерированный))? текстовый блок "([^"]*)", "([^"]*)"'
+
+		'When-textarea':
+				'prefix': 'When-textarea'
+				'description': 'When-textarea'
+				'body':'When Я заполняю(?: (сгенерированный))? текстовый блок "([^"]*)", "([^"]*)"'
+
+		'Then-textarea':
+				'prefix': 'Then-textarea'
+				'description': 'Then-textarea'
+				'body':'Then Я заполняю(?: (сгенерированный))? текстовый блок "([^"]*)", "([^"]*)"'
+
+		'And-textarea':
+				'prefix': 'And-textarea'
+				'description': 'And-textarea'
+				'body':'And Я заполняю(?: (сгенерированный))? текстовый блок "([^"]*)", "([^"]*)"'
+
+		'Given-ckeditor':
+				'prefix': 'Given-ckeditor'
+				'description': 'Given-ckeditor'
+				'body':'Given Я заполняю(?: (сгенерированный))? текстовый редактор(?: "([^"]*)",)? "([^"]*)"'
+
+		'When-ckeditor':
+				'prefix': 'When-ckeditor'
+				'description': 'When-ckeditor'
+				'body':'When Я заполняю(?: (сгенерированный))? текстовый редактор(?: "([^"]*)",)? "([^"]*)"'
+
+		'Then-ckeditor':
+				'prefix': 'Then-ckeditor'
+				'description': 'Then-ckeditor'
+				'body':'Then Я заполняю(?: (сгенерированный))? текстовый редактор(?: "([^"]*)",)? "([^"]*)"'
+
+		'And-ckeditor':
+				'prefix': 'And-ckeditor'
+				'description': 'And-ckeditor'
+				'body':'And Я заполняю(?: (сгенерированный))? текстовый редактор(?: "([^"]*)",)? "([^"]*)"'
+
+		'Given-datapicker':
+				'prefix': 'Given-datapicker'
+				'description': 'Given-datapicker'
+				'body':'Given Я заполняю календарь "([^"]*)"(?:, "([^"]*)")?'
+
+		'When-datapicker':
+				'prefix': 'When-datapicker'
+				'description': 'When-datapicker'
+				'body':'When Я заполняю календарь "([^"]*)"(?:, "([^"]*)")?'
+
+		'Then-datapicker':
+				'prefix': 'Then-datapicker'
+				'description': 'Then-datapicker'
+				'body':'Then Я заполняю календарь "([^"]*)"(?:, "([^"]*)")?'
+
+		'And-datapicker':
+				'prefix': 'And-datapicker'
+				'description': 'And-datapicker'
+				'body':'And Я заполняю календарь "([^"]*)"(?:, "([^"]*)")?'
+
+		'Given-autocomplete':
+				'prefix': 'Given-autocomplete'
+				'description': 'Given-autocomplete'
+				'body':'Given Я выбираю (?:(значение|сгенерированный тег) "([^"]*)" )?в (поле|фильтре) с выпадающим списком "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'When-autocomplete':
+				'prefix': 'When-autocomplete'
+				'description': 'When-autocomplete'
+				'body':'When Я выбираю (?:(значение|сгенерированный тег) "([^"]*)" )?в (поле|фильтре) с выпадающим списком "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Then-autocomplete':
+				'prefix': 'Then-autocomplete'
+				'description': 'Then-autocomplete'
+				'body':'Then Я выбираю (?:(значение|сгенерированный тег) "([^"]*)" )?в (поле|фильтре) с выпадающим списком "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'And-autocomplete':
+				'prefix': 'And-autocomplete'
+				'description': 'And-autocomplete'
+				'body':'And Я выбираю (?:(значение|сгенерированный тег) "([^"]*)" )?в (поле|фильтре) с выпадающим списком "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Given-select':
+				'prefix': 'Given-select'
+				'description': 'Given-select'
+				'body':'Given Я выбираю(?: "([^"]*)")? из списка опций "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'When-select':
+				'prefix': 'When-select'
+				'description': 'When-select'
+				'body':'When Я выбираю(?: "([^"]*)")? из списка опций "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Then-select':
+				'prefix': 'Then-select'
+				'description': 'Then-select'
+				'body':'Then Я выбираю(?: "([^"]*)")? из списка опций "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'And-select':
+				'prefix': 'And-select'
+				'description': 'And-select'
+				'body':'And Я выбираю(?: "([^"]*)")? из списка опций "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Given-checkbox':
+				'prefix': 'Given-checkbox'
+				'description': 'Given-checkbox'
+				'body':'Given Я кликаю по чекбоксу "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'When-checkbox':
+				'prefix': 'When-checkbox'
+				'description': 'When-checkbox'
+				'body':'When Я кликаю по чекбоксу "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Then-checkbox':
+				'prefix': 'Then-checkbox'
+				'description': 'Then-checkbox'
+				'body':'Then Я кликаю по чекбоксу "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'And-checkbox':
+				'prefix': 'And-checkbox'
+				'description': 'And-checkbox'
+				'body':'And Я кликаю по чекбоксу "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Given-radio':
+				'prefix': 'Given-radio'
+				'description': 'Given-radio'
+				'body':'Given Я выбираю радиокнопку "([^"]*)", "([^"]*)"'
+
+		'When-radio':
+				'prefix': 'When-radio'
+				'description': 'When-radio'
+				'body':'When Я выбираю радиокнопку "([^"]*)", "([^"]*)"'
+
+		'Then-radio':
+				'prefix': 'Then-radio'
+				'description': 'Then-radio'
+				'body':'Then Я выбираю радиокнопку "([^"]*)", "([^"]*)"'
+
+		'And-radio':
+				'prefix': 'And-radio'
+				'description': 'And-radio'
+				'body':'And Я выбираю радиокнопку "([^"]*)", "([^"]*)"'
+
+		'Given-file':
+				'prefix': 'Given-file'
+				'description': 'Given-file'
+				'body':'Given Я загружаю файл "([^"]*)" в поле "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'When-file':
+				'prefix': 'When-file'
+				'description': 'When-file'
+				'body':'When Я загружаю файл "([^"]*)" в поле "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Then-file':
+				'prefix': 'Then-file'
+				'description': 'Then-file'
+				'body':'Then Я загружаю файл "([^"]*)" в поле "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'And-file':
+				'prefix': 'And-file'
+				'description': 'And-file'
+				'body':'And Я загружаю файл "([^"]*)" в поле "([^"]*)"(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Given-scrollDirection':
+				'prefix': 'Given-scrollDirection'
+				'description': 'Given-scrollDirection'
+				'body':'Given Я скроллю (наверх|вниз)'
+
+		'When-scrollDirection':
+				'prefix': 'When-scrollDirection'
+				'description': 'When-scrollDirection'
+				'body':'When Я скроллю (наверх|вниз)'
+
+		'Then-scrollDirection':
+				'prefix': 'Then-scrollDirection'
+				'description': 'Then-scrollDirection'
+				'body':'Then Я скроллю (наверх|вниз)'
+
+		'And-scrollDirection':
+				'prefix': 'And-scrollDirection'
+				'description': 'And-scrollDirection'
+				'body':'And Я скроллю (наверх|вниз)'
+
+		'Given-scrollBlock':
+				'prefix': 'Given-scrollBlock'
+				'description': 'Given-scrollBlock'
+				'body':'Given Я скроллю до блока "([^"]*)"'
+
+		'When-scrollBlock':
+				'prefix': 'When-scrollBlock'
+				'description': 'When-scrollBlock'
+				'body':'When Я скроллю до блока "([^"]*)"'
+
+		'Then-scrollBlock':
+				'prefix': 'Then-scrollBlock'
+				'description': 'Then-scrollBlock'
+				'body':'Then Я скроллю до блока "([^"]*)"'
+
+		'And-scrollBlock':
+				'prefix': 'And-scrollBlock'
+				'description': 'And-scrollBlock'
+				'body':'And Я скроллю до блока "([^"]*)"'
+
+		'Given-clickTableTd':
+				'prefix': 'Given-clickTableTd'
+				'description': 'Given-clickTableTd'
+				'body':'Given Я выбираю элемент таблицы под номером (\d+)(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'When-clickTableTd':
+				'prefix': 'When-clickTableTd'
+				'description': 'When-clickTableTd'
+				'body':'When Я выбираю элемент таблицы под номером (\d+)(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'Then-clickTableTd':
+				'prefix': 'Then-clickTableTd'
+				'description': 'Then-clickTableTd'
+				'body':'Then Я выбираю элемент таблицы под номером (\d+)(?: в (поле|блоке) (".*"))?(?: (модального окна))?'
+
+		'And-clickTableTd':
+				'prefix': 'And-clickTableTd'
+				'description': 'And-clickTableTd'
+				'body':'And Я выбираю элемент таблицы под номером (\d+)(?: в (поле|блоке) (".*"))?(?: (модального окна))?'

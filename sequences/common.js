@@ -47,29 +47,39 @@ function gotoSection(arg){
 
 module.exports = {
     goto: gotoSection,
-    
+
     goto_blank: gotoSection({
         name: '[string]',
         main: '[string]',
         secondary: '[string]',
         title: '[string]'
     }),
+
     goto_kpgz: gotoSection({
         name: 'НСИ',
         main: 'Справочник КПГЗ / СПГЗ',
         secondary: 'КПГЗ',
         title: 'Список КПГЗ'
     }),
+
     goto_spgz: gotoSection({
         name: 'НСИ',
         main: 'Справочник КПГЗ / СПГЗ',
         secondary: 'CПГЗ',
         title: 'Список СПГЗ'
     }),
+    
     goto_characteristics: gotoSection({
         name: 'НСИ',
         main: 'Справочник КПГЗ / СПГЗ',
         secondary: 'Характеристики',
         title: 'Список характеристик'
+    }),
+
+    goto_grbs: gotoSection({
+        name: 'НСИ',
+        main: 'Участники',
+        secondary: 'ГРБС',
+        title: 'Список ГРБС'
     })
 };

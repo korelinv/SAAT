@@ -117,5 +117,21 @@ module.exports = function(callback) {
         body: sequences.add_organization_contract_blank.content()
     })
 
+    .comment('создать новый ГРБС')
+    .add({
+        name: 'new-grbs',
+        prefix: 'new-grbs',
+        description: 'Создать новый ГРБС',
+        body: sequences.new_grbs_blank.content()
+    })
+
+    .comment('создать нового заказчика')
+    .add({
+        name: 'new-сustomer',
+        prefix: 'new-сustomer',
+        description: 'Создать новый заказчика',
+        body: sequences.new_customer_blank.content()
+    })
+
     .finalize(callback);
 }

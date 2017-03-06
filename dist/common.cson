@@ -2,9 +2,57 @@
 
 		#переход к разделу
 
-		'goto-section':
-				'prefix': 'goto-section'
+		'goto':
+				'prefix': 'goto'
 				'description': 'Переход к разделу'
+				'body':"""
+						#переход к разделу "[string]", "[string]", "[string]"
+						Then Я открываю раздел системы "[string]"
+						Then Я выбираю в меню "[string]", "[string]"
+						Then Я ожидаю, что заголовок содержит "[string]"
+				"""
+
+		#переход к разделу КПГЗ
+
+		'goto-kpgz':
+				'prefix': 'goto-kpgz'
+				'description': 'Переход к разделу КПГЗ'
+				'body':"""
+						#переход к разделу "[string]", "[string]", "[string]"
+						Then Я открываю раздел системы "[string]"
+						Then Я выбираю в меню "[string]", "[string]"
+						Then Я ожидаю, что заголовок содержит "[string]"
+				"""
+
+		#переход к разделу СПГЗ
+
+		'goto-spgz':
+				'prefix': 'goto-spgz'
+				'description': 'Переход к разделу СПГЗ'
+				'body':"""
+						#переход к разделу "[string]", "[string]", "[string]"
+						Then Я открываю раздел системы "[string]"
+						Then Я выбираю в меню "[string]", "[string]"
+						Then Я ожидаю, что заголовок содержит "[string]"
+				"""
+
+		#переход к разделу Характеристики
+
+		'goto-characteristics':
+				'prefix': 'goto-characteristics'
+				'description': 'Переход к разделу Характеристики'
+				'body':"""
+						#переход к разделу "[string]", "[string]", "[string]"
+						Then Я открываю раздел системы "[string]"
+						Then Я выбираю в меню "[string]", "[string]"
+						Then Я ожидаю, что заголовок содержит "[string]"
+				"""
+
+		#переход к разделу ГРБС
+
+		'goto-grbs':
+				'prefix': 'goto-grbs'
+				'description': 'Переход к разделу ГРБС'
 				'body':"""
 						#переход к разделу "[string]", "[string]", "[string]"
 						Then Я открываю раздел системы "[string]"
