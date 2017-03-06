@@ -311,11 +311,11 @@ class Input extends Focused{
         return new Input(Object.assign({}, this.config, {valueType: 'уникальным кодом', value: value}));
     };
 
-    withInnFl(value) {
+    withInnUl(value) {
         return new Input(Object.assign({}, this.config, {valueType: 'новым кодом ИНН(ЮЛ)', value: value}));
     };
 
-    withInnUl(value) {
+    withInnFl(value) {
         return new Input(Object.assign({}, this.config, {valueType: 'новым кодом ИНН(ФЛ)', value: value}));
     };
 

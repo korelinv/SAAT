@@ -52,7 +52,7 @@ function newKpgzSeq(args) {
             .And(autocomplete.field().withName('Код ОКПД-2'))
         .End()
 
-        .Comment('And Я сохраняю новый КПГЗ')
+        .And('And Я сохраняю новый КПГЗ')
         .Then(checkTitle.withText('Информация о КПГЗ'));
 };
 

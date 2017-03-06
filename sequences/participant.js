@@ -30,61 +30,212 @@ const {login,
 
 const common = require('./common');
 
-const WIZARD1_BLANK = {
-    innFl: '[string]',
-    innUl: '[string]',
-    kpp: '[string]'
+function wizard(args) {
+    return new Sequence()
+        .Comment('Заполнение визарда')
+
+        .If(true === !!args.innUl)
+            .Then(input.field().withName('ИНН').withInnUl(args.innUl))
+        .End()
+
+        .If(true === !!args.innFl)
+            .Then(input.field().withName('ИНН').withInnFl(args.innFl))
+        .End()
+
+        .And(input.field().withName('КПП').withText(args.kpp))
+        .Then(button.confirm())
+        .Then(button.confirm());
 };
-const WIZARD2_BLANK = {
-    country: '[string]',
-    innUl: '[string]',
-    innFl: '[string]',
-    kpp: '[string]',
-    type: '[string]'
+
+function wizard_v2(args) {
+    return new Sequence()
+        .Comment('Заполнение визарда')
+        .Then(autocomplete.field().withName('Страна').withText(args.country))
+        .Then(button.withText('Далее'))
+
+        .If('Российская Федерация' === args.country)
+
+            .If(true === !!args.innUl)
+                .Then(input.field().withName('ИНН').withInnUl(args.innUl))
+            .End()
+
+            .If(true === !!args.innFl)
+                .Then(input.field().withName('ИНН').withInnFl(args.innFl))
+            .End()
+
+            .Then(button.withText('Далее'))
+            .Then(input.field().withName('КПП').withText(args.kpp))
+        .End()
+
+        .If('Российская Федерация' !== args.country)
+            .Then(button.withText('Сгенерировать'))
+
+            .If(true === !!args.type)
+                .Then(select.withName('Тип').withValue(args.type))
+            .End()
+
+            .If(true === args.registred)
+
+                .Then(checkbox.withName('Состоит на учете в налоговом органе РФ'))
+
+                .If(true === !!args.innUl)
+                    .Then(input.field().withName('ИНН').withInnUl(args.innUl))
+                    .Then(input.field().withName('КПП').withText(args.kpp))
+                .End()
+
+                .If(true === !!args.innFl)
+                    .Then(input.field().withName('ИНН').withInnFl(args.innFl))
+                .End()
+
+            .End()
+
+        .End()
+
+        .Then(button.withText('Далее'))
+        .Then(button.withText('Далее'))
 };
 
-let wizard1Seq = (args) => new Sequence()
-    .ifelse(!!args.innUl,
-            (seq) => seq
-                .then(input.field().withName('ИНН').withInnUl(args.innUl)),
-            (seq) => seq
-                .then(input.field().withName('ИНН').withInnFl(args.innFl)))
+function add_contact_person(args) {
+    return new Sequence()
+        .Comment('Добавление контактного лица')
+        .Then('Я заполняю блок Контактные лица "ЛАЛАЛАЛА", "ЛАЛАЛАЛА", "1234567890", "Бухгалтерия", "test@test.ru"');
+};
 
-    .ifelse(!!args.innUl && !!args.innFl,
-            (seq) => seq.comment(`Then ${input.field().withName('ИНН').withInnFl(args.innFl).render()}`))
+function add_contact_info(args) {
+    return new Sequence()
+        .Comment('Добавление контактной информации')
+        .Then('Я заполняю блок Контактная информация (Страна регистрации) "asdfasdfasdf", "Владивостокское время", "123123123", "test@test.ru", "asdf", "asdf", "asdf"');
+};
 
-    .and(input.field().withName('КПП').withInnFl(args.kpp))
-    .then(button.confirm())
-    .then(button.confirm());
+function add_checking_account(args) {
+    return new Sequence()
+        .Comment('Добавление расчетного счета')
+        .Then(scrollBlock.withName('Расчетные счета'))
+        .And(button.withCaption('Добавляет расчетный счет'))
+        .And(input.field().withName('Номер расчетного счета').withText('123456789'))
+        .And(autocomplete.field().withName('БИК'))
+        .And(checkbox.withName('Признак использования в контрактной системе'))
+        .Then(button.withName('Сохранение Создание банковского реквизита'));
+};
 
-let wizard2Seq = (args) => new Sequence()
-    .then(autocomplete.field().withName('Страна').withText(args.country))
-    .then(button.withText('Далее'))
+function add_personal_account(args) {
+    return new Sequence()
+        .Comment('Добавление лицевого счета')
+        .Then(scrollBlock.withName('Лицевые счета'))
+        .And(button.withCaption('Добавляет лицевой счет'))
+        .And(input.field().withName('Номер лицевого счета').withText('123456789'))
+        .And(autocomplete.field().withName('Номер расчетного счета'))
+        .And(checkbox.withName('Признак использования в контрактной системе'))
+        .Then(button.withName('Сохранение Создание банковского реквизита'));
+};
 
-    .ifelse('Российская Федерация' === args.country,
-            (seq) => seq
-                .then(input.field().withName('ИНН').withInnFl(args.innUl))
-                .then(button.withText('Далее'))
-                .then(input.field().withName('КПП').withText(args.kpp)),
-            (seq) => seq
-                .then(button.withText('Сгенерировать'))
-                .ifelse(!!args.innUl,
-                        (seq) => seq
-                            .then(select.withName('Тип').withValue('Юридическое лицо')),
-                        (seq) => seq
-                            .then(select.withName('Тип').withValue('Физическое лицо')))
+function add_trust_managment_account(args) {
+    return new Sequence()
+        .Comment('Добавление счета доверительного управления')
+        .Then(scrollBlock.withName('Счета доверительного управления'))
+        .And(button.withCaption('Добавляет счет доверительного управления'))
+        .And(input.field().withName('Номер счета доверительного управления').withText('123456789'))
+        .And(autocomplete.field().withName('БИК'))
+        .And(checkbox.withName('Признак использования в контрактной системе'))
+        .Then(button.withName('Сохранение Создание банковского реквизита'));
+};
 
-                .ifelse(!!args.innUl && !!args.innFl,
-                        (seq) => seq.comment(`Then ${select.withName('Тип').withValue('Физическое лицо').render()}`))
+function add_organization_contract(args) {
+    return new Sequence()
+        .Comment('Добавление контракта со специализированной организацией')
+        .Then(scrollBlock.withName('Контракты со специализированной организацией'))
+        .And(button.withCaption('Создание Контракты со специализированной организацией'))
+        .And(input.field().withName('Номер контракта').withText('123456789'))
+        .And(datapicker.withName('Дата контракта'))
+        .And(autocomplete.field().withName('Специализированная организация'))
+        .And(datapicker.withName('Дата начала действия контракта'))
+        .And(datapicker.withName('Дата окончания действия контракта'))
+        .Then(button.withName('Сохранение Создание контракта со специализированной организацией'));
+};
 
-                /*.ifelse()*/)
-
-    .then(button.withText('Далее'))
-    .then(button.withText('Далее'));
 
 module.exports = {
-    wizard1Seq: wizard1Seq,
-    wizard2Seq: wizard2Seq,
-    WIZARD1_BLANK: WIZARD1_BLANK,
-    WIZARD2_BLANK: WIZARD2_BLANK
+    wizard: wizard,
+    wizard_v2: wizard_v2,
+    add_contact_person: add_contact_person,
+    add_contact_info: add_contact_info,
+    add_checking_account: add_checking_account,
+    add_personal_account: add_personal_account,
+    add_trust_managment_account: add_trust_managment_account,
+    add_organization_contract: add_organization_contract,
+
+    wizard_blank_fl: wizard({
+        innFl: '[string]',
+        kpp: '[string]'
+    }),
+
+    wizard_blank_ul: wizard({
+        innUl: '[string]',
+        kpp: '[string]'
+    }),
+
+    wizard_v2_blank_fl: wizard_v2({
+        country: 'Российская Федерация',
+        innFl: '[string]',
+        kpp: '[string]'
+    }),
+
+    wizard_v2_blank_ul: wizard_v2({
+        country: 'Российская Федерация',
+        innUl: '[string]',
+        kpp: '[string]'
+    }),
+
+    wizard_v2_blank_foreign_fl: wizard_v2({
+        country: '[string]',
+        type: 'Физическое лицо',
+        registred: true,
+        innFl: '[string]'
+    }),
+
+    wizard_v2_blank_foreign_ul: wizard_v2({
+        country: '[string]',
+        type: 'Юридическое лицо',
+        registred: true,
+        innUl: '[string]',
+        kpp: '[string]'
+    }),
+
+    wizard_v2_blank_foreign_unregistred_fl: wizard_v2({
+        country: '[string]',
+        type: 'Физическое лицо',
+        registred: false
+    }),
+
+    wizard_v2_blank_foreign_unregistred_ul: wizard_v2({
+        country: '[string]',
+        type: 'Юридическое лицо',
+        registred: false
+    }),
+
+
+    add_contact_person_blank: add_contact_person({
+
+    }),
+
+    add_contact_info_blank: add_contact_info({
+
+    }),
+
+    add_checking_account_blank: add_checking_account({
+
+    }),
+
+    add_personal_account_blank: add_personal_account({
+
+    }),
+
+    add_trust_managment_account_blank: add_trust_managment_account({
+
+    }),
+    
+    add_organization_contract_blank: add_organization_contract({
+
+    })
+
 };
