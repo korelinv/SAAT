@@ -235,7 +235,25 @@ module.exports = {
             main: 'Нормирование',
             secondary: 'Коэффициенты потребности',
             title: 'Список коэффициентов потребности'
+        }),
+
+        __goto_comission_order: 'переход к разделу ',
+        goto_comission_order: goto_section({
+            name: 'Комиссии',
+            main: 'Комиссии',
+            secondary: 'Приказы',
+            title: 'Список приказов'
+        }),
+
+        __goto_comission: 'переход к разделу ',
+        goto_comission: goto_section({
+            name: 'Комиссии',
+            main: 'Комиссии',
+            secondary: 'Комиссии',
+            title: 'Список комиссий'
         })
+
+
 
     }
 

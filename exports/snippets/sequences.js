@@ -9,7 +9,8 @@ const renders = [
     '../../sequences/participant',
     '../../sequences/reference',
     '../../sequences/spgz',
-    '../../sequences/user'
+    '../../sequences/user',
+    '../../sequences/comission'
 ];
 
 /**
