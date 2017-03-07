@@ -1,8 +1,8 @@
-const SnipetFile = require('../classes/snippet');
-const sequences = require('../sequences/characteristic');
+const SnipetFile = require('../../classes/snippet');
+const sequences = require('../../sequences/characteristic');
 
 module.exports = function(callback) {
-    return new SnipetFile('dist/characteristic')
+    return new SnipetFile('dist/snippets/characteristic')
     .domain('.source.feature')
     .comment('создаем характеристику')
     .add({
