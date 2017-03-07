@@ -1,8 +1,8 @@
-const SnipetFile = require('../classes/snippet');
-const sequences = require('../sequences/user');
+const SnipetFile = require('../../classes/snippet');
+const sequences = require('../../sequences/user');
 
 module.exports = function(callback) {
-    return new SnipetFile('dist/user')
+    return new SnipetFile('dist/snippets/user')
     .domain('.source.feature')
     .comment('новый пользователь')
     .add({

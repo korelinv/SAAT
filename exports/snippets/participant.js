@@ -1,8 +1,8 @@
-const SnipetFile = require('../classes/snippet');
-const sequences = require('../sequences/participant');
+const SnipetFile = require('../../classes/snippet');
+const sequences = require('../../sequences/participant');
 
 module.exports = function(callback) {
-    return new SnipetFile('dist/participant')
+    return new SnipetFile('dist/snippets/participant')
     .domain('.source.feature')
 
     .comment('визард участинка (тип 1) физлицо')

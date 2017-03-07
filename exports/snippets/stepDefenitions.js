@@ -1,9 +1,9 @@
-const SnipetFile = require('../classes/snippet');
-const defenitions = require('../steps/wrappers');
+const SnipetFile = require('../../classes/snippet');
+const defenitions = require('../../steps/wrappers');
 
 module.exports = function(callback) {
 
-    let result = new SnipetFile('dist/steps').domain('.source.feature');
+    let result = new SnipetFile('dist/snippets/steps').domain('.source.feature');
 
     for (let defenition in defenitions) {
         ['Given',

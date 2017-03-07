@@ -1,11 +1,17 @@
-const steps = require('./exports/stepDefenitions');
+const Feature = require('./classes/feature');
+const Sequence = require('./classes/sequence');
 
-const user = require('./exports/user');
-const common = require('./exports/common');
-const kpgz = require('./exports/kpgz');
-const spgz = require('./exports/spgz');
-const characteristic = require('./exports/characteristic');
-const participant = require('./exports/participant');
+global.$Feature = Feature;
+global.$Sequence = Sequence;
+
+const steps = require('./exports/snippets/stepDefenitions');
+
+const user = require('./exports/snippets/user');
+const common = require('./exports/snippets/common');
+const kpgz = require('./exports/snippets/kpgz');
+const spgz = require('./exports/snippets/spgz');
+const characteristic = require('./exports/snippets/characteristic');
+const participant = require('./exports/snippets/participant');
 
 steps(() => console.log('steps done!'));
 
@@ -15,3 +21,7 @@ kpgz(() => console.log('kpgz done!'));
 spgz(() => console.log('spgz done!'));
 characteristic(() => console.log('characteristic done!'));
 participant(() => console.log('participant done!'));
+
+const features = require('./exports/features/index');
+
+features();

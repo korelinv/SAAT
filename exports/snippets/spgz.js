@@ -1,8 +1,8 @@
-const SnipetFile = require('../classes/snippet');
-const sequences = require('../sequences/spgz');
+const SnipetFile = require('../../classes/snippet');
+const sequences = require('../../sequences/spgz');
 
 module.exports = function(callback) {
-    return new SnipetFile('dist/spgz')
+    return new SnipetFile('dist/snippets/spgz')
     .domain('.source.feature')
     .comment('новый СПГЗ')
     .add({

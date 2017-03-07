@@ -1,4 +1,5 @@
 const fs = require('fs');
+const pt = require('path');
 
 const indent = (t) => ('\t').repeat(t*2);
 
@@ -48,6 +49,15 @@ class SnipetFile {
     }
 
     finalize(callback) {
+
+        let path = './';
+        this.filename.match(/([^\\\/\.]+)(?=\/|\\)/g).forEach((dir) => {
+            path = pt.join(path, dir);
+            if (!fs.existsSync(path)) {
+                fs.mkdirSync(path)
+            }
+        });
+
         fs.writeFile(`./${this.filename}.cson`, this.content.join('\n\n'), callback);
     };
 
