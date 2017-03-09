@@ -68,7 +68,7 @@ module.exports = {
         secondary: 'CПГЗ',
         title: 'Список СПГЗ'
     }),
-    
+
     goto_characteristics: gotoSection({
         name: 'НСИ',
         main: 'Справочник КПГЗ / СПГЗ',
@@ -81,5 +81,111 @@ module.exports = {
         main: 'Участники',
         secondary: 'ГРБС',
         title: 'Список ГРБС'
+    }),
+
+    goto_expert: gotoSection({
+        name: 'НСИ',
+        main: 'Участники',
+        secondary: 'Эксперты',
+        title: 'Список экспертов'
+    }),
+
+    goto_participant_regulator: gotoSection({
+        name: 'НСИ',
+        main: 'Участники',
+        secondary: 'Регулирующие органы исполнительной власти',
+        title: 'Список регулирующих органов исполнительной власти'
+    }),
+
+    goto_controller: gotoSection({
+        name: 'НСИ',
+        main: 'Участники',
+        secondary: 'Контрольные органы в сфере закупок',
+        title: 'Список контрольных органов в сфере закупок'
+    }),
+
+    goto_special: gotoSection({
+        name: 'НСИ',
+        main: 'Участники',
+        secondary: 'Специализированные организации',
+        title: 'Список специализированных организаций'
+    }),
+
+    goto_authority: gotoSection({
+        name: 'НСИ',
+        main: 'Участники',
+        secondary: 'Уполномоченные органы или учреждения',
+        title: 'Список уполномоченных органов или учреждений'
+    }),
+
+    goto_supplier: gotoSection({
+        name: 'НСИ',
+        main: 'Участники',
+        secondary: 'Поставщики',
+        title: 'Список поставщиков'
+    }),
+
+    goto_amortization_groupd: gotoSection({
+        name: 'НСИ',
+        main: 'Справочники',
+        secondary: 'Амортизационные группы',
+        title: 'Список амортизационных групп'
+    }),
+
+    goto_trading_paltform: gotoSection({
+        name: 'НСИ',
+        main: 'Справочники',
+        secondary: 'Торговая площадка',
+        title: 'Список торговых площадок'
+    }),
+
+    goto_pereodicity: gotoSection({
+        name: 'НСИ',
+        main: 'Справочники',
+        secondary: 'Периодичность поставки',
+        title: 'Список периодичностей поставки'
+    }),
+
+    goto_interruption: gotoSection({
+        name: 'НСИ',
+        main: 'Справочники',
+        secondary: 'Нарушения',
+        title: 'Список нарушений'
+    }),
+
+    goto_change_reason: gotoSection({
+        name: 'НСИ',
+        main: 'Справочники',
+        secondary: 'Причины изменения планов',
+        title: 'Список причин изменения планов'
+    }),
+
+    goto_document_rubricator: gotoSection({
+        name: 'НСИ',
+        main: 'Справочники',
+        secondary: 'Рубрикатор НПСИ',
+        title: 'Список Рубрикатор НПСИ'
+    }),
+
+    goto_reference_document: gotoSection({
+        name: 'НСИ',
+        main: 'Справочники',
+        secondary: 'Справочник документов НПСИ',
+        title: 'Список НПСИ'
+    }),
+
+    goto_external_resource: gotoSection({
+        name: 'НСИ',
+        main: 'Справочники',
+        secondary: 'Справочник внешних ресурсов НПСИ',
+        title: 'Список внешних ресурсов'
+    }),
+
+    goto_position: gotoSection({
+        name: 'НСИ',
+        main: 'Справочники',
+        secondary: 'Справочник должностей',
+        title: 'Список должностей'
     })
+
 };

@@ -133,5 +133,53 @@ module.exports = function(callback) {
         body: sequences.new_customer_blank.content()
     })
 
+    .comment('создать нового эксперта')
+    .add({
+        name: 'new-expert',
+        prefix: 'new-expert',
+        description: 'Создать нового эксперта',
+        body: sequences.new_expert_blank.content()
+    })
+
+    .comment('создать новый регулирующий орган')
+    .add({
+        name: 'new-articipant-regulator',
+        prefix: 'new-articipant-regulator',
+        description: 'Создать новый регулирующий орган',
+        body: sequences.new_participant_regulator_blank.content()
+    })
+
+    .comment('создать новый контролирующий орган')
+    .add({
+        name: 'new-controller',
+        prefix: 'new-controller',
+        description: 'Создать новый контролирующий орган',
+        body: sequences.new_controller_blank.content()
+    })
+
+    .comment('создать новую специализированную организацию')
+    .add({
+        name: 'new-special',
+        prefix: 'new-special',
+        description: 'Создать новую специализированную организацию',
+        body: sequences.new_special_blank.content()
+    })
+
+    .comment('создать новый уполномоченный орган')
+    .add({
+        name: 'new-authority',
+        prefix: 'new-authority',
+        description: 'Создать новый уполномоченный орган',
+        body: sequences.new_authority_blank.content()
+    })
+
+    .comment('создать нового поставщика')
+    .add({
+        name: 'new-supplier',
+        prefix: 'new-supplier',
+        description: 'Создать нового поставщика',
+        body: sequences.new_supplier_blank.content()
+    })
+
     .finalize(callback);
 }

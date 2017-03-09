@@ -193,7 +193,7 @@ function new_grbs(args) {
         .Sequence(wizard(args.wizard))
         .Then(checkTitle.withText('Создание ГРБС'))
         .Then(datapicker.withName('Дата постановки на учет в налоговом органе'))
-        .And(autocomplete.withName('Организационно-правовая форма'))
+        .And(autocomplete.field().withName('Организационно-правовая форма'))
         .And(textarea.withName('Полное наименование').generated().withText(args.name))
         .And(textarea.withName('Краткое наименование').generated().withText(args.name))
         .And(input.field().withName('ОГРН').withText('1234567890123'))
@@ -223,7 +223,7 @@ function new_customer(args) {
         .Then(checkTitle.withText('Создание заказчика'))
 
         .Then(datapicker.withName('Дата постановки на учет в налоговом органе'))
-        .And(autocomplete.withName('Организационно-правовая форма'))
+        .And(autocomplete.field().withName('Организационно-правовая форма'))
         .And(textarea.withName('Полное наименование').generated().withText(args.name))
         .And(textarea.withName('Краткое наименование').generated().withText(args.name))
         .And(input.field().withName('ОГРН').withText('1234567890123'))
@@ -258,6 +258,211 @@ function new_customer(args) {
         .Then(checkTitle.withText('Информация о заказчике'))
 };
 
+function new_expert(args) {
+    return new Sequence()
+        .Comment('Создание нового эксперта')
+        .Sequence(common.goto_expert)
+        .Then(button.create())
+        .Sequence(wizard_v2(args.wizard))
+        .Then(checkTitle.withText('Создание эксперта'))
+
+        .Then(datapicker.withName('Дата постановки на учет в налоговом органе'))
+        .And(autocomplete.field().withName('Организационно-правовая форма'))
+        .And(textarea.withName('Полное наименование').generated().withText(args.name))
+        .And(textarea.withName('Краткое наименование').generated().withText(args.name))
+        .And(input.field().withName('ОГРН').withText('1234567890123'))
+        .And(input.field().withName('Юридический адрес').withText('LALALALALA'))
+        .And(input.field().withName('ОКПО').withText('12345678'))
+        .And(autocomplete.field().withName('ОКАТО'))
+        .And(autocomplete.field().withName('ОКТМО'))
+        .And(autocomplete.field().withName('ОКВЭД'))
+        .And(input.field().withName('Место нахождения').withText('121170 город Москва, пл Победы, дом 3Д'))
+
+        .Sequence(add_contact_person(args.contact_person))
+
+        .Sequence(add_checking_account(args.checking_account))
+
+        .Sequence(add_personal_account(args.personal_account))
+
+        .Then(scrollDirection.up())
+        .Then(button.save())
+        .Then(checkTitle.withText('Информация об эксперте'));
+};
+
+function new_participant_regulator(args) {
+    return new Sequence()
+        .Comment('создание нового регулирующего органа')
+        .Sequence(common.goto_participant_regulator)
+        .Then(button.create())
+        .Sequence(wizard(args.wizard))
+        .Then(checkTitle.withText('Создание регулирующего органа исполнительной власти'))
+
+        .Then(datapicker.withName('Дата постановки на учет в налоговом органе'))
+        .And(autocomplete.field().withName('Организационно-правовая форма'))
+        .And(textarea.withName('Полное наименование').generated().withText(args.name))
+        .And(textarea.withName('Краткое наименование').generated().withText(args.name))
+        .And(input.field().withName('ОГРН').withText('1234567890123'))
+
+        .And(input.field().withName('Юридический адрес').withText('LALALALALA'))
+        .And(input.field().withName('ОКПО').withText('12345678'))
+        .And(autocomplete.field().withName('ОКАТО'))
+        .And(autocomplete.field().withName('ОКТМО'))
+        .And(autocomplete.field().withName('ОКОГУ'))
+        .And(autocomplete.field().withName('ОКВЭД'))
+        .And(input.field().withName('Место нахождения').withText('121170 город Москва, пл Победы, дом 3Д'))
+
+        .Sequence(add_contact_person(args.contact_person))
+
+        .Sequence(add_checking_account(args.checking_account))
+
+        .Sequence(add_personal_account(args.personal_account))
+
+        .Then(scrollDirection.up())
+        .Then(button.save())
+        .Then(checkTitle.withText('Информация о регулирующем органе исполнительной власти'));
+};
+
+function new_controller(args) {
+    return new Sequence()
+        .Comment('создание нового контрольного органа органа')
+
+        .Sequence(common.goto_controller)
+        .Then(button.create())
+        .Sequence(wizard(args.wizard))
+        .Then(checkTitle.withText('Создание контрольного органа в сфере закупок'))
+
+        .Then(datapicker.withName('Дата постановки на учет в налоговом органе'))
+        .And(autocomplete.field().withName('Организационно-правовая форма'))
+        .And(textarea.withName('Полное наименование').generated().withText(args.name))
+        .And(textarea.withName('Краткое наименование').generated().withText(args.name))
+        .And(input.field().withName('ОГРН').withText('1234567890123'))
+
+        .And(input.field().withName('Юридический адрес').withText('LALALALALA'))
+        .And(input.field().withName('ОКПО').withText('12345678'))
+        .And(autocomplete.field().withName('ОКАТО'))
+        .And(autocomplete.field().withName('ОКТМО'))
+        .And(autocomplete.field().withName('ОКОГУ'))
+        .And(autocomplete.field().withName('ОКВЭД'))
+
+        .And(input.field().withName('Место нахождения').withText('121170 город Москва, пл Победы, дом 3Д'))
+
+        .Sequence(add_contact_person(args.contact_person))
+
+        .Sequence(add_checking_account(args.checking_account))
+
+        .Sequence(add_personal_account(args.personal_account))
+
+        .Then(scrollDirection.up())
+        .Then(button.save())
+        .Then(checkTitle.withText('Информация о контрольном органе в сфере закупок'));
+};
+
+function new_special(args) {
+    return new Sequence()
+        .Comment('создание новой специализированной организации')
+        .Sequence(common.goto_special)
+        .Then(button.create())
+        .Sequence(wizard_v2(args.wizard))
+        .Then(checkTitle.withText('Создание специализированной организации'))
+        .Then(datapicker.withName('Дата постановки на учет в налоговом органе'))
+        .And(autocomplete.field().withName('Организационно-правовая форма'))
+        .And(textarea.withName('Полное наименование').generated().withText(args.name))
+        .And(textarea.withName('Краткое наименование').generated().withText(args.name))
+        .And(input.field().withName('ОГРН').withText('1234567890123'))
+        .And(input.field().withName('Юридический адрес').withText('LALALALALA'))
+        .And(input.field().withName('Код по СПЗ').withText('1234567890'))
+        .And(input.field().withName('ОКПО').withText('12345678'))
+        .And(autocomplete.field().withName('ОКАТО'))
+        .And(autocomplete.field().withName('ОКТМО'))
+        .And(autocomplete.field().withName('ОКВЭД'))
+        .And(input.field().withName('Место нахождения').withText('121170 город Москва, пл Победы, дом 3Д'))
+
+        .Sequence(add_contact_person(args.contact_person))
+
+        .And(scrollBlock.withName('Обоснование'))
+        .And(input.field().withName().withText())
+        .And(input.field().withName().withText())
+        .And(datapicker.withName('Дата документа'))
+        .And(file.withName('Документ').withValue('uploadFiles/test.jpg'))
+
+        .Sequence(add_checking_account(args.checking_account))
+
+        .Sequence(add_personal_account(args.personal_account))
+
+        .Then(scrollDirection.up())
+        .Then(button.save())
+        .Then(checkTitle.withText('Информация о специализированной организации'));
+};
+
+function new_authority(args) {
+    return new Sequence()
+        .Comment('создание нового уполномоченного органа')
+        .Sequence(common.goto_authority)
+        .Then(button.create())
+        .Sequence(wizard(args.wizard))
+        .Then(checkTitle.withText('Создание уполномоченного органа или учреждения'))
+
+        .Then(datapicker.withName('Дата постановки на учет в налоговом органе'))
+        .And(autocomplete.field().withName('Организационно-правовая форма'))
+        .And(textarea.withName('Полное наименование').generated().withText(args.name))
+        .And(textarea.withName('Краткое наименование').generated().withText(args.name))
+        .And(input.field().withName('ОГРН').withText('1234567890123'))
+        .And(input.field().withName('Юридический адрес').withText('LALALALALA'))
+
+        .And(input.field().withName('ОКПО').withText('12345678'))
+        .And(autocomplete.field().withName('ОКАТО'))
+        .And(autocomplete.field().withName('ОКТМО'))
+        .And(autocomplete.field().withName('ОКОГУ'))
+        .And(autocomplete.field().withName('ОКВЭД'))
+
+        .And(input.field().withName('Место нахождения').withText('121170 город Москва, пл Победы, дом 3Д'))
+
+        .Sequence(add_contact_person(args.contact_person))
+
+        .Sequence(add_checking_account(args.checking_account))
+
+        .Sequence(add_personal_account(args.personal_account))
+
+        .Then(scrollDirection.up())
+        .Then(button.save())
+        .Then(checkTitle.withText('Информация о уполномоченном органе или учреждении'));
+};
+
+function new_supplier(args) {
+    return new Sequence()
+        .Comment('создание новго поставщика')
+        .Sequence(common.goto_supplier)
+        .Then(button.create())
+        .Sequence(wizard_v2(args.wizard))
+        .Then(checkTitle.withText('Создание поставщика'))
+
+        .Then(datapicker.withName('Дата постановки на учет в налоговом органе'))
+        .And(autocomplete.field().withName('Организационно-правовая форма'))
+        .And(textarea.withName('Полное наименование').generated().withText(args.name))
+        .And(textarea.withName('Краткое наименование').generated().withText(args.name))
+        .And(input.field().withName('ОГРН').withText('1234567890123'))
+        .And(input.field().withName('Юридический адрес').withText('LALALALALA'))
+
+        .And(input.field().withName('ОКПО').withText('12345678'))
+        .And(autocomplete.field().withName('ОКАТО'))
+        .And(autocomplete.field().withName('ОКТМО'))
+        .And(autocomplete.field().withName('ОКВЭД'))
+
+        .And(input.field().withName('Место нахождения').withText('121170 город Москва, пл Победы, дом 3Д'))
+        .And(input.field().withName('Адрес интернет сайта').withText('test.ru'))
+
+        .Sequence(add_contact_person(args.contact_person))
+
+        .Sequence(add_checking_account(args.checking_account))
+
+        .Sequence(add_personal_account(args.personal_account))
+
+        .Sequence(add_trust_managment_account(args.trust_managment_account))
+
+        .Then(scrollDirection.up())
+        .Then(button.save())
+        .Then(checkTitle.withText('Информация о поставщике'));
+};
 
 module.exports = {
     wizard: wizard,
@@ -271,6 +476,12 @@ module.exports = {
 
     new_grbs: new_grbs,
     new_customer: new_customer,
+    new_expert: new_expert,
+    new_participant_regulator: new_participant_regulator,
+    new_controller: new_controller,
+    new_special: new_special,
+    new_authority: new_authority,
+    new_supplier: new_supplier,
 
     wizard_blank_fl: wizard({
         innFl: '[string]',
@@ -413,6 +624,154 @@ module.exports = {
             contract: '[string]',
             organization: '[string]'
         }
-    })
+    }),
 
+    new_expert_blank: new_expert({
+        name: '[string]',
+        wizard: {
+            country: 'Российская Федерация',
+            innUl: '[string]',
+            kpp: '[string]'
+        },
+        contact_person: {
+            patronymic: '[string]',
+            name: '[string]',
+            phone: '[string]',
+            phoneType: '[string]',
+            email: '[string]'
+        },
+        checking_account: {
+            account: '[string]',
+            bik: '[string]'
+        },
+        personal_account: {
+            account: '[string]',
+            cheking: '[string]'
+        },
+    }),
+
+    new_participant_regulator_blank: new_participant_regulator({
+        name: '[string]',
+        wizard: {
+            innUl: '[string]',
+            kpp: '[string]'
+        },
+        contact_person: {
+            patronymic: '[string]',
+            name: '[string]',
+            phone: '[string]',
+            phoneType: '[string]',
+            email: '[string]'
+        },
+        checking_account: {
+            account: '[string]',
+            bik: '[string]'
+        },
+        personal_account: {
+            account: '[string]',
+            cheking: '[string]'
+        }
+    }),
+
+    new_controller_blank: new_controller({
+        name: '[string]',
+        wizard: {
+            innUl: '[string]',
+            kpp: '[string]'
+        },
+        contact_person: {
+            patronymic: '[string]',
+            name: '[string]',
+            phone: '[string]',
+            phoneType: '[string]',
+            email: '[string]'
+        },
+        checking_account: {
+            account: '[string]',
+            bik: '[string]'
+        },
+        personal_account: {
+            account: '[string]',
+            cheking: '[string]'
+        }
+    }),
+
+    new_special_blank: new_special({
+        name: '[string]',
+        wizard: {
+            country: 'Российская Федерация',
+            innUl: '[string]',
+            kpp: '[string]'
+        },
+        contact_person: {
+            patronymic: '[string]',
+            name: '[string]',
+            phone: '[string]',
+            phoneType: '[string]',
+            email: '[string]'
+        },
+        checking_account: {
+            account: '[string]',
+            bik: '[string]'
+        },
+        personal_account: {
+            account: '[string]',
+            cheking: '[string]'
+        }
+    }),
+
+    new_authority_blank: new_authority({
+        name: '[string]',
+        wizard: {
+            innUl: '[string]',
+            kpp: '[string]'
+        },
+        contact_person: {
+            patronymic: '[string]',
+            name: '[string]',
+            phone: '[string]',
+            phoneType: '[string]',
+            email: '[string]'
+        },
+        checking_account: {
+            account: '[string]',
+            bik: '[string]'
+        },
+        personal_account: {
+            account: '[string]',
+            cheking: '[string]'
+        }
+    }),
+
+    new_supplier_blank: new_supplier({
+        name: '[string]',
+        wizard: {
+            country: 'Российская Федерация',
+            innUl: '[string]',
+            kpp: '[string]'
+        },
+        contact_person: {
+            patronymic: '[string]',
+            name: '[string]',
+            phone: '[string]',
+            phoneType: '[string]',
+            email: '[string]'
+        },
+        checking_account: {
+            account: '[string]',
+            bik: '[string]'
+        },
+        personal_account: {
+            account: '[string]',
+            cheking: '[string]'
+        },
+        trust_managment_account: {
+            account: '[string]',
+            bik: '[string]'
+        },
+        organization_contract: {
+            contract: '[string]',
+            organization: '[string]'
+        }
+    })
 };
