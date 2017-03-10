@@ -28,7 +28,7 @@ const {login,
        scrollBlock,
        clickTableTd} = require('../steps/wrappers');
 
-const common = require('./common').methods;
+const common = require('./common').render;
 
 function new_amortization_groupd(args) {
     return new Sequence()

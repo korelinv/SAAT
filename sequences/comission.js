@@ -28,7 +28,7 @@ const {login,
        scrollBlock,
        clickTableTd} = require('../steps/wrappers');
 
-const common = require('./common').methods;
+const common = require('./common').render;
 
 function add_commision_order_memeber(args) {
     let list = (true === Array.isArray(args)) ? args : [args];
@@ -97,7 +97,6 @@ function new_commision_order(args) {
         .Then(button.save())
         .Then(checkTitle.withText('Информация о приказе'));
 };
-
 
 module.exports = {
 

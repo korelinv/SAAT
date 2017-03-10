@@ -28,8 +28,8 @@ const {login,
        scrollBlock,
        clickTableTd} = require('../steps/wrappers');
 
-const common = require('./common').methods;
-const characteristic = require('./characteristic').methods;
+const common = require('./common').render;
+const characteristic = require('./characteristic').render;
 
 
 function new_kpgz(args) {
