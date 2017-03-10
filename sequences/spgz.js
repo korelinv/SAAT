@@ -28,12 +28,12 @@ const {login,
        scrollBlock,
        clickTableTd} = require('../steps/wrappers');
 
-const common = require('./common');
+const common = require('./common').methods;
 
 function newSpgz(args) {
     return new Sequence()
+        .Comment('создание СПГЗ')
         .Sequence(common.goto_spgz)
-        .Comment('создаем СПГЗ')
         .Then(button.create())
         .And(input.field().withName('Наименование СПГЗ').withTag('Тестовый СПГЗ'))
 
@@ -79,11 +79,17 @@ function newSpgz(args) {
 };
 
 module.exports = {
-    new: newSpgz,
 
-    new_blank: newSpgz({
-        kpgz: '[string]',
-        okpd: '[string]',
-        okpd2: '[string]'
-    })
+    methosd: {
+        new: newSpgz
+    },
+
+    render: {
+        __new_spgz_blank: 'создание нового СПГЗ',
+        new_spgz_blank: newSpgz({
+            kpgz: '[string]',
+            okpd: '[string]',
+            okpd2: '[string]'
+        })
+    }
 };

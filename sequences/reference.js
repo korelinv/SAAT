@@ -28,7 +28,7 @@ const {login,
        scrollBlock,
        clickTableTd} = require('../steps/wrappers');
 
-const common = require('./common');
+const common = require('./common').methods;
 
 function new_amortization_groupd(args) {
     return new Sequence()
@@ -151,55 +151,73 @@ function new_position(args) {
 
 module.exports = {
 
-    new_amortization_groupd: new_amortization_groupd,
-    new_trading_paltform: new_trading_paltform,
-    new_customer_rating: new_customer_rating,
-    new_pereodicity: new_pereodicity,
-    new_interruption: new_interruption,
-    new_change_reason: new_change_reason,
-    new_document_rubricator: new_document_rubricator,
-    new_reference_document: new_reference_document,
-    new_external_resource: new_external_resource,
-    new_position: new_position,
+    methods: {
+        new_amortization_groupd: new_amortization_groupd,
+        new_trading_paltform: new_trading_paltform,
+        new_customer_rating: new_customer_rating,
+        new_pereodicity: new_pereodicity,
+        new_interruption: new_interruption,
+        new_change_reason: new_change_reason,
+        new_document_rubricator: new_document_rubricator,
+        new_reference_document: new_reference_document,
+        new_external_resource: new_external_resource,
+        new_position: new_position
+    },
 
-    new_amortization_groupd_blank: new_amortization_groupd({
-        name: '[string]'
-    }),
+    render: {
 
-    new_trading_paltform_blank: new_trading_paltform({
-        name: '[string]'
-    }),
+        __new_amortization_groupd_blank: 'создание новой амортизационной группы',
+        new_amortization_groupd_blank: new_amortization_groupd({
+            name: '[string]'
+        }),
 
-    new_customer_rating_blank: new_customer_rating({
-        name: '[string]'
-    }),
+        __new_trading_paltform_blank: 'создание новой торговой площадки',
+        new_trading_paltform_blank: new_trading_paltform({
+            name: '[string]'
+        }),
 
-    new_pereodicity_blank: new_pereodicity({
-        name: '[string]'
-    }),
+        /*
+        __new_customer_rating_blank: '',
+        new_customer_rating_blank: new_customer_rating({
+            name: '[string]'
+        }),
+        */
 
-    new_interruption_blank: new_interruption({
-        name: '[string]'
-    }),
+        __new_pereodicity_blank: 'создание новой переодичности поставки',
+        new_pereodicity_blank: new_pereodicity({
+            name: '[string]'
+        }),
 
-    new_change_reason_blank: new_change_reason({
-        name: '[string]'
-    }),
+        __new_interruption_blank: 'создание нового нарушения',
+        new_interruption_blank: new_interruption({
+            name: '[string]'
+        }),
 
-    new_document_rubricator_blank: new_document_rubricator({
-        name: '[string]'
-    }),
+        __new_change_reason_blank: 'создание новой причины измененеия плана',
+        new_change_reason_blank: new_change_reason({
+            name: '[string]'
+        }),
 
-    new_reference_document_blank: new_reference_document({
-        name: '[string]'
-    }),
+        __new_document_rubricator_blank: 'создание нового рубрикатора НПСИ',
+        new_document_rubricator_blank: new_document_rubricator({
+            name: '[string]'
+        }),
 
-    new_external_resource_blank: new_external_resource({
-        name: '[string]'
-    }),
+        __new_reference_document_blank: 'создание нового справочника НПСИ',
+        new_reference_document_blank: new_reference_document({
+            name: '[string]'
+        }),
 
-    new_position_blank: new_position({
-        name: '[string]'
-    })
+        __new_external_resource_blank: 'создание нового справочника внешних ресурсов',
+        new_external_resource_blank: new_external_resource({
+            name: '[string]'
+        }),
+
+        __new_position_blank: 'создание нового справочника должностей',
+        new_position_blank: new_position({
+            name: '[string]'
+        })
+
+    }
 
 };

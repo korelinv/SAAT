@@ -30,6 +30,7 @@ const {login,
 
 function newUser(args) {
     return new Sequence()
+        .Comment('создание пользователя')
         .Then(button.create())
         .And(input.field().withName('Фамилия').withText('Иванов').inModal())
         .And(input.field().withName('Имя').withText('Иван').inModal())
@@ -70,6 +71,7 @@ function newUser(args) {
 
 function newCreateRequest(args) {
     return new Sequence()
+        .Comment('создание заявки на саморегистрацию')
         .Then(logout)
         .Then(selfRegistration)
         .Then(button.create())
@@ -103,6 +105,7 @@ function newCreateRequest(args) {
 
 function newUpdateRequest(args) {
     return new Sequence()
+        .Comment('создание заявки на изменение пользователя')
         .When(section.withName('Личный кабинет'))
         .Then(link.withText('Создать заявку на изменение данных'))
         .Then(button.withName('Далее'))
@@ -113,11 +116,29 @@ function newUpdateRequest(args) {
 };
 
 module.exports = {
-    new_user: newUser,
-    new_create_request: newCreateRequest,
-    new_update_request: newUpdateRequest,
 
-    new_user_blank: newUser({}),
-    new_create_request_blank: newCreateRequest({}),
-    new_update_request_blank: newUpdateRequest({})
+    mathods: {
+        new_user: newUser,
+        new_create_request: newCreateRequest,
+        new_update_request: newUpdateRequest
+    },
+
+    render: {
+
+        __new_user_blank: 'создание нового пользователя',
+        new_user_blank: newUser({
+
+        }),
+
+        __new_create_request_blank: 'создание новой заявки на саморегистрацию',
+        new_create_request_blank: newCreateRequest({
+
+        }),
+
+        __new_update_request_blank: 'создание новой заявки на изменение пользователя',
+        new_update_request_blank: newUpdateRequest({
+
+        })
+
+    }
 };

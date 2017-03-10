@@ -28,17 +28,17 @@ const {login,
        scrollBlock,
        clickTableTd} = require('../steps/wrappers');
 
-const common = require('./common');
-const characteristic = require('./characteristic');
+const common = require('./common').methods;
+const characteristic = require('./characteristic').methods;
 
 
-function newKpgzSeq(args) {
+function new_kpgz(args) {
     return new Sequence()
-        .Sequence(common.gotoKpgz)
-        .Comment('создаем КПГЗ')
+        .Comment('создание КПГЗ')
+        .Sequence(common.goto_kpgz)
         .Then(button.create())
 
-        .And(input.field().withName('Наименование КПГЗ').withTag((!!args.name) ? args.name : 'ТЕСТОВЫЙ КПГЗ'))
+        .And(input.field().withName('Наименование КПГЗ').withTag(args.name))
 
         .If(true === !!args.parent)
             .And(autocomplete.field().withName('Вышестоящий КПГЗ').withGenereatedtag(args.parent))
@@ -56,8 +56,9 @@ function newKpgzSeq(args) {
         .Then(checkTitle.withText('Информация о КПГЗ'));
 };
 
-function addCharacteristicSeq(args) {
+function add_characteristic(args) {
     return new Sequence()
+        .Comment('добавление характеристики')
         .Then(scrollBlock.withName('Характеристики'))
         .Then(button.create().inBlock('Характеристики'))
 
@@ -83,17 +84,26 @@ function addCharacteristicSeq(args) {
 
 
 module.exports = {
-    new: newKpgzSeq,
-    add_characteristic: addCharacteristicSeq,
 
-    new_blank: newKpgzSeq({
-        name: '[string]',
-        parent: '[string]',
-        okpd: '[string]',
-        okpd2: '[string]'
-    }),
-    add_characteristic_blank: addCharacteristicSeq({
-        name: '[string]',
-        type: '[string]'
-    })
+    methods: {
+        new: new_kpgz,
+        add_characteristic: add_characteristic
+    },
+
+    render: {
+
+        __new_blank:'создание нового КПГЗ',
+        new_kpgz_blank: new_kpgz({
+            name: '[string]',
+            parent: '[string]',
+            okpd: '[string]',
+            okpd2: '[string]'
+        }),
+
+        __add_characteristic_blank:'добавление характеристики в КПГЗ',
+        add_characteristic_blank: add_characteristic({
+            name: '[string]',
+            type: '[string]'
+        })
+    }
 };

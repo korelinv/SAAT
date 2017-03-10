@@ -28,15 +28,15 @@ const {login,
        scrollBlock,
        clickTableTd} = require('../steps/wrappers');
 
-const common = require('./common');
+const common = require('./common').methods;
 
 
-function newCharacteristic(args) {
+function new_сharacteristic(args) {
     return new Sequence()
-        .Sequence(common.gotoCharacteristics)
-        .Comment('создаем характеристику')
+        .Sequence(common.goto_characteristics)
+        .Comment('создание характеристики')
         .Then(button.create())
-        .Then(input.field().withName('Наименование характеристики').withTag('ТЕСТОВАЯ ХАРАКТЕРИСТИКА'))
+        .Then(input.field().withName('Наименование характеристики').withTag(args.name))
 
         .If(true === !!args.type)
             .And(autocomplete.field().withName('Признак').withText(args.type))
@@ -52,9 +52,17 @@ function newCharacteristic(args) {
 };
 
 module.exports = {
-    new: newCharacteristic,
-    
-    new_blank: newCharacteristic({
-        type: '[string]'
-    })
+
+    methods: {
+        new: new_сharacteristic
+    },
+
+    render: {
+        __new_сharacteristic_blank: 'создание новой характеристики',
+        new_сharacteristic_blank: new_сharacteristic({
+            name: '[string]',
+            type: '[string]'
+        })
+    }
+
 };

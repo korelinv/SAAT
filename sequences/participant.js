@@ -28,11 +28,11 @@ const {login,
        scrollBlock,
        clickTableTd} = require('../steps/wrappers');
 
-const common = require('./common');
+const common = require('./common').methods;
 
 function wizard(args) {
     return new Sequence()
-        .Comment('Заполнение визарда')
+        .Comment('заполнение визарда')
 
         .If(true === !!args.innUl)
             .Then(input.field().withName('ИНН').withInnUl(args.innUl))
@@ -49,7 +49,7 @@ function wizard(args) {
 
 function wizard_v2(args) {
     return new Sequence()
-        .Comment('Заполнение визарда')
+        .Comment('заполнение визарда')
         .Then(autocomplete.field().withName('Страна').withText(args.country))
         .Then(button.withText('Далее'))
 
@@ -97,19 +97,19 @@ function wizard_v2(args) {
 
 function add_contact_person(args) {
     return new Sequence()
-        .Comment('Добавление контактного лица')
+        .Comment('добавление контактного лица')
         .Then(`Я заполняю блок Контактные лица "${args.patronymic}", "${args.name}", "${args.phone}", "${args.phoneType}", "${args.email}"`);
 };
 
 function add_contact_info(args) {
     return new Sequence()
-        .Comment('Добавление контактной информации')
+        .Comment('добавление контактной информации')
         .Then(`Я заполняю блок Контактная информация (Страна регистрации) "${args.address}", "${args.time}", "${args.phone}", "${args.email}", "${args.surname}", "${args.name}", "${args.patronymic}"`);
 };
 
 function add_checking_account(args) {
     return new Sequence()
-        .Comment('Добавление расчетного счета')
+        .Comment('добавление расчетного счета')
         .Then(scrollBlock.withName('Расчетные счета'))
         .And(button.withCaption('Добавляет расчетный счет'))
         .And(input.field().withName('Номер расчетного счета').withText(args.account))
@@ -128,7 +128,7 @@ function add_checking_account(args) {
 
 function add_personal_account(args) {
     return new Sequence()
-        .Comment('Добавление лицевого счета')
+        .Comment('добавление лицевого счета')
         .Then(scrollBlock.withName('Лицевые счета'))
         .And(button.withCaption('Добавляет лицевой счет'))
         .And(input.field().withName('Номер лицевого счета').withText(args.account))
@@ -147,7 +147,7 @@ function add_personal_account(args) {
 
 function add_trust_managment_account(args) {
     return new Sequence()
-        .Comment('Добавление счета доверительного управления')
+        .Comment('добавление счета доверительного управления')
         .Then(scrollBlock.withName('Счета доверительного управления'))
         .And(button.withCaption('Добавляет счет доверительного управления'))
         .And(input.field().withName('Номер счета доверительного управления').withText(args.account))
@@ -166,7 +166,7 @@ function add_trust_managment_account(args) {
 
 function add_organization_contract(args) {
     return new Sequence()
-        .Comment('Добавление контракта со специализированной организацией')
+        .Comment('добавление контракта со специализированной организацией')
         .Then(scrollBlock.withName('Контракты со специализированной организацией'))
         .And(button.withCaption('Создание Контракты со специализированной организацией'))
         .And(input.field().withName('Номер контракта').withText(args.contract))
@@ -187,7 +187,7 @@ function add_organization_contract(args) {
 
 function new_grbs(args) {
     return new Sequence()
-        .Comment('Создание нового ГРБС')
+        .Comment('создание ГРБС')
         .Sequence(common.goto_grbs)
         .Then(button.create())
         .Sequence(wizard(args.wizard))
@@ -216,7 +216,7 @@ function new_grbs(args) {
 
 function new_customer(args) {
     return new Sequence()
-        .Comment('Создание нового заказчика')
+        .Comment('создание заказчика')
         .Sequence(common.goto_customer)
         .Then(button.create())
         .Sequence(wizard(args.wizard))
@@ -260,7 +260,7 @@ function new_customer(args) {
 
 function new_expert(args) {
     return new Sequence()
-        .Comment('Создание нового эксперта')
+        .Comment('создание эксперта')
         .Sequence(common.goto_expert)
         .Then(button.create())
         .Sequence(wizard_v2(args.wizard))
@@ -291,7 +291,7 @@ function new_expert(args) {
 
 function new_participant_regulator(args) {
     return new Sequence()
-        .Comment('создание нового регулирующего органа')
+        .Comment('создание регулирующего органа')
         .Sequence(common.goto_participant_regulator)
         .Then(button.create())
         .Sequence(wizard(args.wizard))
@@ -324,7 +324,7 @@ function new_participant_regulator(args) {
 
 function new_controller(args) {
     return new Sequence()
-        .Comment('создание нового контрольного органа органа')
+        .Comment('создание контрольного органа органа')
 
         .Sequence(common.goto_controller)
         .Then(button.create())
@@ -359,7 +359,7 @@ function new_controller(args) {
 
 function new_special(args) {
     return new Sequence()
-        .Comment('создание новой специализированной организации')
+        .Comment('создание специализированной организации')
         .Sequence(common.goto_special)
         .Then(button.create())
         .Sequence(wizard_v2(args.wizard))
@@ -396,7 +396,7 @@ function new_special(args) {
 
 function new_authority(args) {
     return new Sequence()
-        .Comment('создание нового уполномоченного органа')
+        .Comment('создание уполномоченного органа')
         .Sequence(common.goto_authority)
         .Then(button.create())
         .Sequence(wizard(args.wizard))
@@ -430,7 +430,7 @@ function new_authority(args) {
 
 function new_supplier(args) {
     return new Sequence()
-        .Comment('создание новго поставщика')
+        .Comment('создание поставщика')
         .Sequence(common.goto_supplier)
         .Then(button.create())
         .Sequence(wizard_v2(args.wizard))
@@ -465,313 +465,341 @@ function new_supplier(args) {
 };
 
 module.exports = {
-    wizard: wizard,
-    wizard_v2: wizard_v2,
-    add_contact_person: add_contact_person,
-    add_contact_info: add_contact_info,
-    add_checking_account: add_checking_account,
-    add_personal_account: add_personal_account,
-    add_trust_managment_account: add_trust_managment_account,
-    add_organization_contract: add_organization_contract,
 
-    new_grbs: new_grbs,
-    new_customer: new_customer,
-    new_expert: new_expert,
-    new_participant_regulator: new_participant_regulator,
-    new_controller: new_controller,
-    new_special: new_special,
-    new_authority: new_authority,
-    new_supplier: new_supplier,
+    methods: {
+        wizard: wizard,
+        wizard_v2: wizard_v2,
+        add_contact_person: add_contact_person,
+        add_contact_info: add_contact_info,
+        add_checking_account: add_checking_account,
+        add_personal_account: add_personal_account,
+        add_trust_managment_account: add_trust_managment_account,
+        add_organization_contract: add_organization_contract,
 
-    wizard_blank_fl: wizard({
-        innFl: '[string]',
-        kpp: '[string]'
-    }),
+        new_grbs: new_grbs,
+        new_customer: new_customer,
+        new_expert: new_expert,
+        new_participant_regulator: new_participant_regulator,
+        new_controller: new_controller,
+        new_special: new_special,
+        new_authority: new_authority,
+        new_supplier: new_supplier
+    },
 
-    wizard_blank_ul: wizard({
-        innUl: '[string]',
-        kpp: '[string]'
-    }),
+    render: {
 
-    wizard_v2_blank_fl: wizard_v2({
-        country: 'Российская Федерация',
-        innFl: '[string]',
-        kpp: '[string]'
-    }),
+        __wizard_blank_fl: 'визард участинка (тип 1) физлицо',
+        wizard_blank_fl: wizard({
+            innFl: '[string]',
+            kpp: '[string]'
+        }),
 
-    wizard_v2_blank_ul: wizard_v2({
-        country: 'Российская Федерация',
-        innUl: '[string]',
-        kpp: '[string]'
-    }),
-
-    wizard_v2_blank_foreign_fl: wizard_v2({
-        country: '[string]',
-        type: 'Физическое лицо',
-        registred: true,
-        innFl: '[string]'
-    }),
-
-    wizard_v2_blank_foreign_ul: wizard_v2({
-        country: '[string]',
-        type: 'Юридическое лицо',
-        registred: true,
-        innUl: '[string]',
-        kpp: '[string]'
-    }),
-
-    wizard_v2_blank_foreign_unregistred_fl: wizard_v2({
-        country: '[string]',
-        type: 'Физическое лицо',
-        registred: false
-    }),
-
-    wizard_v2_blank_foreign_unregistred_ul: wizard_v2({
-        country: '[string]',
-        type: 'Юридическое лицо',
-        registred: false
-    }),
-
-
-    add_contact_person_blank: add_contact_person({
-        patronymic: '[string]',
-        name: '[string]',
-        phone: '[string]',
-        phoneType: '[string]',
-        email: '[string]'
-    }),
-
-    add_contact_info_blank: add_contact_info({
-        address: '[string]',
-        time: '[string]',
-        phone: '[string]',
-        email: '[string]',
-        surname: '[string]',
-        name: '[string]',
-        patronymic: '[string]'
-    }),
-
-    add_checking_account_blank: add_checking_account({
-        account: '[string]',
-        bik: '[string]'
-    }),
-
-    add_personal_account_blank: add_personal_account({
-        account: '[string]',
-        cheking: '[string]'
-    }),
-
-    add_trust_managment_account_blank: add_trust_managment_account({
-        account: '[string]',
-        bik: '[string]'
-    }),
-
-    add_organization_contract_blank: add_organization_contract({
-        contract: '[string]',
-        organization: '[string]'
-    }),
-
-
-    new_grbs_blank: new_grbs({
-        name: '[string]',
-        wizard: {
+        __wizard_blank_ul: 'визард участинка (тип 1) юрдицо',
+        wizard_blank_ul: wizard({
             innUl: '[string]',
             kpp: '[string]'
-        },
-        contact_person: {
+        }),
+
+        __wizard_v2_blank_fl: 'визард участинка (тип 2) физлицо',
+        wizard_v2_blank_fl: wizard_v2({
+            country: 'Российская Федерация',
+            innFl: '[string]',
+            kpp: '[string]'
+        }),
+
+        __wizard_v2_blank_ul: 'визард участинка (тип 2) юрлицо',
+        wizard_v2_blank_ul: wizard_v2({
+            country: 'Российская Федерация',
+            innUl: '[string]',
+            kpp: '[string]'
+        }),
+
+        __wizard_v2_blank_foreign_fl: 'визард участинка (тип 2) физлицо, не РФ',
+        wizard_v2_blank_foreign_fl: wizard_v2({
+            country: '[string]',
+            type: 'Физическое лицо',
+            registred: true,
+            innFl: '[string]'
+        }),
+
+        __wizard_v2_blank_foreign_ul: 'визард участинка (тип 2) юрлицо, не РФ',
+        wizard_v2_blank_foreign_ul: wizard_v2({
+            country: '[string]',
+            type: 'Юридическое лицо',
+            registred: true,
+            innUl: '[string]',
+            kpp: '[string]'
+        }),
+
+        __wizard_v2_blank_foreign_unregistred_fl: 'визард участинка (тип 2) физлицо, не РФ, не состоит на учете',
+        wizard_v2_blank_foreign_unregistred_fl: wizard_v2({
+            country: '[string]',
+            type: 'Физическое лицо',
+            registred: false
+        }),
+
+        __wizard_v2_blank_foreign_unregistred_ul: 'визард участинка (тип 2) юрлицо, не РФ, не состоит на учете',
+        wizard_v2_blank_foreign_unregistred_ul: wizard_v2({
+            country: '[string]',
+            type: 'Юридическое лицо',
+            registred: false
+        }),
+
+
+        __add_contact_person_blank: 'добавление контактного лица',
+        add_contact_person_blank: add_contact_person({
             patronymic: '[string]',
             name: '[string]',
             phone: '[string]',
             phoneType: '[string]',
             email: '[string]'
-        },
-        checking_account: {
-            account: '[string]',
-            bik: '[string]'
-        },
-        personal_account: {
-            account: '[string]',
-            cheking: '[string]'
-        }
-    }),
+        }),
 
-    new_customer_blank: new_customer({
-        name: '[string]',
-        wizard: {
-            innUl: '[string]',
-            kpp: '[string]'
-        },
-        contact_person: {
-            patronymic: '[string]',
-            name: '[string]',
+        __add_contact_info_blank: 'добавление контактной информации',
+        add_contact_info_blank: add_contact_info({
+            address: '[string]',
+            time: '[string]',
             phone: '[string]',
-            phoneType: '[string]',
-            email: '[string]'
-        },
-        checking_account: {
+            email: '[string]',
+            surname: '[string]',
+            name: '[string]',
+            patronymic: '[string]'
+        }),
+
+        __add_checking_account_blank: 'добавление расчетного счета',
+        add_checking_account_blank: add_checking_account({
             account: '[string]',
             bik: '[string]'
-        },
-        personal_account: {
+        }),
+
+        __add_personal_account_blank: 'добавление лицевого счета',
+        add_personal_account_blank: add_personal_account({
             account: '[string]',
             cheking: '[string]'
-        },
-        trust_managment_account: {
+        }),
+
+        __add_trust_managment_account_blank: 'добавление счета доверительного управления',
+        add_trust_managment_account_blank: add_trust_managment_account({
             account: '[string]',
             bik: '[string]'
-        },
-        organization_contract: {
+        }),
+
+        __add_organization_contract_blank: 'добавление контракта со специализированной организацией',
+        add_organization_contract_blank: add_organization_contract({
             contract: '[string]',
             organization: '[string]'
-        }
-    }),
+        }),
 
-    new_expert_blank: new_expert({
-        name: '[string]',
-        wizard: {
-            country: 'Российская Федерация',
-            innUl: '[string]',
-            kpp: '[string]'
-        },
-        contact_person: {
-            patronymic: '[string]',
-            name: '[string]',
-            phone: '[string]',
-            phoneType: '[string]',
-            email: '[string]'
-        },
-        checking_account: {
-            account: '[string]',
-            bik: '[string]'
-        },
-        personal_account: {
-            account: '[string]',
-            cheking: '[string]'
-        },
-    }),
 
-    new_participant_regulator_blank: new_participant_regulator({
-        name: '[string]',
-        wizard: {
-            innUl: '[string]',
-            kpp: '[string]'
-        },
-        contact_person: {
-            patronymic: '[string]',
+        __new_grbs_blank: 'создание нового ГРБС',
+        new_grbs_blank: new_grbs({
             name: '[string]',
-            phone: '[string]',
-            phoneType: '[string]',
-            email: '[string]'
-        },
-        checking_account: {
-            account: '[string]',
-            bik: '[string]'
-        },
-        personal_account: {
-            account: '[string]',
-            cheking: '[string]'
-        }
-    }),
+            wizard: {
+                innUl: '[string]',
+                kpp: '[string]'
+            },
+            contact_person: {
+                patronymic: '[string]',
+                name: '[string]',
+                phone: '[string]',
+                phoneType: '[string]',
+                email: '[string]'
+            },
+            checking_account: {
+                account: '[string]',
+                bik: '[string]'
+            },
+            personal_account: {
+                account: '[string]',
+                cheking: '[string]'
+            }
+        }),
 
-    new_controller_blank: new_controller({
-        name: '[string]',
-        wizard: {
-            innUl: '[string]',
-            kpp: '[string]'
-        },
-        contact_person: {
-            patronymic: '[string]',
+        __new_customer_blank: 'создание нового заказчика',
+        new_customer_blank: new_customer({
             name: '[string]',
-            phone: '[string]',
-            phoneType: '[string]',
-            email: '[string]'
-        },
-        checking_account: {
-            account: '[string]',
-            bik: '[string]'
-        },
-        personal_account: {
-            account: '[string]',
-            cheking: '[string]'
-        }
-    }),
+            wizard: {
+                innUl: '[string]',
+                kpp: '[string]'
+            },
+            contact_person: {
+                patronymic: '[string]',
+                name: '[string]',
+                phone: '[string]',
+                phoneType: '[string]',
+                email: '[string]'
+            },
+            checking_account: {
+                account: '[string]',
+                bik: '[string]'
+            },
+            personal_account: {
+                account: '[string]',
+                cheking: '[string]'
+            },
+            trust_managment_account: {
+                account: '[string]',
+                bik: '[string]'
+            },
+            organization_contract: {
+                contract: '[string]',
+                organization: '[string]'
+            }
+        }),
 
-    new_special_blank: new_special({
-        name: '[string]',
-        wizard: {
-            country: 'Российская Федерация',
-            innUl: '[string]',
-            kpp: '[string]'
-        },
-        contact_person: {
-            patronymic: '[string]',
+        __new_expert_blank: 'создание нового эксперта',
+        new_expert_blank: new_expert({
             name: '[string]',
-            phone: '[string]',
-            phoneType: '[string]',
-            email: '[string]'
-        },
-        checking_account: {
-            account: '[string]',
-            bik: '[string]'
-        },
-        personal_account: {
-            account: '[string]',
-            cheking: '[string]'
-        }
-    }),
+            wizard: {
+                country: 'Российская Федерация',
+                innUl: '[string]',
+                kpp: '[string]'
+            },
+            contact_person: {
+                patronymic: '[string]',
+                name: '[string]',
+                phone: '[string]',
+                phoneType: '[string]',
+                email: '[string]'
+            },
+            checking_account: {
+                account: '[string]',
+                bik: '[string]'
+            },
+            personal_account: {
+                account: '[string]',
+                cheking: '[string]'
+            },
+        }),
 
-    new_authority_blank: new_authority({
-        name: '[string]',
-        wizard: {
-            innUl: '[string]',
-            kpp: '[string]'
-        },
-        contact_person: {
-            patronymic: '[string]',
+        __new_participant_regulator_blank: 'создание нового регулирующего органа',
+        new_participant_regulator_blank: new_participant_regulator({
             name: '[string]',
-            phone: '[string]',
-            phoneType: '[string]',
-            email: '[string]'
-        },
-        checking_account: {
-            account: '[string]',
-            bik: '[string]'
-        },
-        personal_account: {
-            account: '[string]',
-            cheking: '[string]'
-        }
-    }),
+            wizard: {
+                innUl: '[string]',
+                kpp: '[string]'
+            },
+            contact_person: {
+                patronymic: '[string]',
+                name: '[string]',
+                phone: '[string]',
+                phoneType: '[string]',
+                email: '[string]'
+            },
+            checking_account: {
+                account: '[string]',
+                bik: '[string]'
+            },
+            personal_account: {
+                account: '[string]',
+                cheking: '[string]'
+            }
+        }),
 
-    new_supplier_blank: new_supplier({
-        name: '[string]',
-        wizard: {
-            country: 'Российская Федерация',
-            innUl: '[string]',
-            kpp: '[string]'
-        },
-        contact_person: {
-            patronymic: '[string]',
+        __new_controller_blank: 'создание нового контролирующего органа',
+        new_controller_blank: new_controller({
             name: '[string]',
-            phone: '[string]',
-            phoneType: '[string]',
-            email: '[string]'
-        },
-        checking_account: {
-            account: '[string]',
-            bik: '[string]'
-        },
-        personal_account: {
-            account: '[string]',
-            cheking: '[string]'
-        },
-        trust_managment_account: {
-            account: '[string]',
-            bik: '[string]'
-        },
-        organization_contract: {
-            contract: '[string]',
-            organization: '[string]'
-        }
-    })
+            wizard: {
+                innUl: '[string]',
+                kpp: '[string]'
+            },
+            contact_person: {
+                patronymic: '[string]',
+                name: '[string]',
+                phone: '[string]',
+                phoneType: '[string]',
+                email: '[string]'
+            },
+            checking_account: {
+                account: '[string]',
+                bik: '[string]'
+            },
+            personal_account: {
+                account: '[string]',
+                cheking: '[string]'
+            }
+        }),
+
+        __new_special_blank: 'создание новой специализированной организации',
+        new_special_blank: new_special({
+            name: '[string]',
+            wizard: {
+                country: 'Российская Федерация',
+                innUl: '[string]',
+                kpp: '[string]'
+            },
+            contact_person: {
+                patronymic: '[string]',
+                name: '[string]',
+                phone: '[string]',
+                phoneType: '[string]',
+                email: '[string]'
+            },
+            checking_account: {
+                account: '[string]',
+                bik: '[string]'
+            },
+            personal_account: {
+                account: '[string]',
+                cheking: '[string]'
+            }
+        }),
+
+        __new_authority_blank: 'создание нового уполномоченного органа',
+        new_authority_blank: new_authority({
+            name: '[string]',
+            wizard: {
+                innUl: '[string]',
+                kpp: '[string]'
+            },
+            contact_person: {
+                patronymic: '[string]',
+                name: '[string]',
+                phone: '[string]',
+                phoneType: '[string]',
+                email: '[string]'
+            },
+            checking_account: {
+                account: '[string]',
+                bik: '[string]'
+            },
+            personal_account: {
+                account: '[string]',
+                cheking: '[string]'
+            }
+        }),
+
+        __new_supplier_blank: 'создание нового поставщика',
+        new_supplier_blank: new_supplier({
+            name: '[string]',
+            wizard: {
+                country: 'Российская Федерация',
+                innUl: '[string]',
+                kpp: '[string]'
+            },
+            contact_person: {
+                patronymic: '[string]',
+                name: '[string]',
+                phone: '[string]',
+                phoneType: '[string]',
+                email: '[string]'
+            },
+            checking_account: {
+                account: '[string]',
+                bik: '[string]'
+            },
+            personal_account: {
+                account: '[string]',
+                cheking: '[string]'
+            },
+            trust_managment_account: {
+                account: '[string]',
+                bik: '[string]'
+            },
+            organization_contract: {
+                contract: '[string]',
+                organization: '[string]'
+            }
+        })
+    }
 };
